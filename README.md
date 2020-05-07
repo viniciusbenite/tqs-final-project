@@ -18,5 +18,9 @@ We should work in teams to specify and implement a medium-sized project, compris
 
 •Axis II:Software Quality Environment(SQE).
 
+### Product definition
+
+The final product of this project cosists in a web application to help users to find the best option for a hair/barber shop.
+
 
 
