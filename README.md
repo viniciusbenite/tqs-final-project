@@ -14,9 +14,9 @@ Team Manager: [Alina Yanchuk](https://github.com/alina-yanchuk02) - 89093
 ### Objectives
 We should work in teams to specify and implement a medium-sized project, comprising a multi-layered, enterprise web application and a Software Quality Assurance (SQA) strategy, applied throughout the software engineering process.The results should include:
 
-•Axis I:software product (functional specification,system architecture and implementation).
+  • Axis I:software product (functional specification,system architecture and implementation).
 
-•Axis II:Software Quality Environment(SQE).
+  • Axis II:Software Quality Environment(SQE).
 
 ### Product definition
 
