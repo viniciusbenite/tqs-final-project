@@ -1,10 +1,9 @@
-package project.application;
+package project.homepage;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import project.models.Greeting;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -28,9 +28,6 @@ public class User implements Serializable {
         this.password = get_SHA_512_SecurePassword(password, "1234");
     }
 
-
-
-
     // generate password
     public String get_SHA_512_SecurePassword(String passwordToHash, String salt){
         String generatedPassword = null;
