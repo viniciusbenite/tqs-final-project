@@ -1,2 +1,11 @@
 lenguage: java
 jdk: openjdk11
+addons:
+  sonarcloud:
+    organization: "viniciusbenite"
+    token:
+      secure: SonarCloudToken
+
+script:
+  - ./mvnw clean install -B
+  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
