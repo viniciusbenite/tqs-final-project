@@ -4,7 +4,7 @@ addons:
   sonarcloud:
     organization: "viniciusbenite"
     token:
-      secure: "c942ca09d6996c6b0b107b0a2ae4f3def41b673f"
+      secure: $SONAR_TOKEN
 
 script:
   - ./mvnw clean install -B
