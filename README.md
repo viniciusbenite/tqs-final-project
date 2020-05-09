@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/viniciusbenite/tqs-final-project.svg?branch=master)](https://travis-ci.org/viniciusbenite/tqs-final-project)
+
 # TQS Final project
 ## Final project for Software test and quality assurance of Aveiro University
 
