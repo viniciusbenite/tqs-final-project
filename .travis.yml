@@ -4,8 +4,7 @@ jdk: openjdk11
 addons:
   sonarcloud:
     organization: "viniciusbenite"
-    token:
-      secure: "OtT3kLSLTtcCmIUEGxbZ0woF7PiFnJ7ykyeP/NAe9sYh92LcESi3ZOihVFXmN2mpbdu40uqbtJBlICmtBiReDwyxSjFrpJyuMccwmm2BrDuHbgAI2kTnrAczCetv61Zc1r8OyRSdtb86/OdCZMyB9B8cZ6tRWj8Rx2m+0wIov8o+0WfYwyPLKcKh/HKVtnMT3Y9nNw5+S1y2GOdBmxEy/8LF2jCWZYIlF1eWmM2H4HtwbAqtlwkW1rd7HAHIcYWTDrS3kjcEf4SMpbYI/myDqzPflD8Xbuj2YOkJsHpWX3opi0dM1fXYqIkm+TAl6r1PgcJNwFDXJk/eX4QwXUp9O9HYjg4tjqrRpN6I927W3OONgvbOiyUUtDxhIv8kMZS5nqy7IVEp8zt5tcrXmI5k3PrcjjC+G5FbaVzgPhKjZRwnoH2lENaEFfjb3Xn1N1VVV4M62yncKHyTZedIHZ3SGT2v3lyK1jqX2qdhFWDD67TtPT5MoicLaYO3u9Hg2BzzamxqFZds166c6Of9O8/OwM7BSwluTiV5zIj8n9FHIJwxptFlk9xeBYnJuWoIzzafxy6CwrHqtB/N3L8uW7FLcD37lNTr4q9lX+eTm/mrt7XdlbBeWmL2ID4LgPGempnIPC2M9C5NuEbAoS8baYnKKAw/u9dNrxPOkvz672LDOWc="
+    token: ${SONAR_TOKEN}
 
 script:
   - ./mvnw clean install -B
