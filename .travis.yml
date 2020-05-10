@@ -6,11 +6,21 @@ addons:
     organization: "viniciusbenite"
     token: ${SONAR_TOKEN}
 
-script:
-  - ./mvnw clean install -B
-  - ./mvnw clean verify sonar:sonar -Pcoverage
-
 cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+  - docker pull openjdk:11-jdk-slim
+
+script:
+  - ./mvnw clean install -B
+  - ./mvnw clean verify sonar:sonar -Pcoverage
+  - ./mvnw deploy
