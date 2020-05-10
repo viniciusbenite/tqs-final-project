@@ -28,5 +28,6 @@ after_success:
   - docker push $IMAGE_NAME
 
 script:
+  - ./mvnw package spring-boot:repackage
   - ./mvnw clean install -B
   - ./mvnw clean verify sonar:sonar -Pcoverage
