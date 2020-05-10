@@ -11,7 +11,7 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target/tqs_final_project-1.0-SNAPSHOT.jar
+ARG JAR_FILE=./target/tqs_final_project-1.0-SNAPSHOT.jar
 
 # Add the application's jar to the container
 COPY ${JAR_FILE} app.jar
