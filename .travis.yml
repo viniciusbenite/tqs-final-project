@@ -19,17 +19,18 @@ sudo: required
 
 services:
   - docker
-  -
+
 before_install:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   - chmod +rwx ./.travis/main.sh
   - './.travis/main.sh'
-  - docker pull openjdk:11-jdk-slim
+  - docker pull openjdk:11-alpine
 
 after_success:
+  - bash <(curl -s https://codecov.io/bash)
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-  - export IMAGE_NAME=barbershop/barbershop-app:0.1-SNAPSHOP
-  - docker build -f ./Dockerfile .
+  - export IMAGE_NAME=tqs-final-project/barbershop
+  - docker build -t $IMAGE_NAME:$COMMIT .
   - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME
 
