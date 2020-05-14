@@ -5,7 +5,7 @@ FROM openjdk:11-jdk-slim
 LABEL maintainer="viniciusribeiro@ua.pt"
 
 VOLUME /tmp
-ADD target/tqs_final_project-1.0-SNAPSHOT.jar app.jar
+ADD app.jar target/tqs_final_project-1.0-SNAPSHOT.jar
 RUN sh -c 'touch /app.jar'
 ENV JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n"
 EXPOSE 8080 8787
