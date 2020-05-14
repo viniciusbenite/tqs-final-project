@@ -3,7 +3,7 @@ FROM openjdk:11-jdk-slim
 
 # Add Maintainer Info
 LABEL maintainer="viniciusribeiro@ua.pt"
-
+ENV HOME /root
 ADD target/tqs_final_project-1.0-SNAPSHOT.jar app.jar
 RUN sh -c 'touch /app.jar'
 ENV JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n"

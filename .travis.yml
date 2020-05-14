@@ -31,4 +31,3 @@ script:
   - ./mvnw package spring-boot:repackage
   - ./mvnw clean install -B
   - ./mvnw clean verify sonar:sonar -Pcoverage
-  - ./mvnw deploy
