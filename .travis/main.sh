@@ -39,7 +39,7 @@ setup_dependencies() {
   sudo apt-key fingerprint 0EBFCD88
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   sudo apt-get update -y
-  sudo apt install docker-ce=5:19.03.8~3-0~ubuntu-bionic docker-ce-cli containerd.io -y
+  sudo apt install docker-ce=5:19.03.8~3-0~ubuntu-xenial docker-ce-cli containerd.io -y
 
   docker info
 }
