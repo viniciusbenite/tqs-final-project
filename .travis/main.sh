@@ -29,7 +29,7 @@ setup_dependencies() {
   "
 
   sudo apt update -y
-  sudo apt install --only-upgrade docker-ce -y
+  sudo apt install --only-upgrade docker-ce=5:19.03.8~3-0~ubuntu-bionic -y
 
   docker info
 }
