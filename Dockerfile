@@ -4,8 +4,7 @@ FROM openjdk:11-jdk-slim
 # Add Maintainer Info
 LABEL maintainer="viniciusribeiro@ua.pt"
 
-VOLUME /tmp
-ADD app.jar target/tqs_final_project-1.0-SNAPSHOT.jar
+ADD target/tqs_final_project-1.0-SNAPSHOT.jar app.jar
 RUN sh -c 'touch /app.jar'
 ENV JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n"
 EXPOSE 8080 8787
