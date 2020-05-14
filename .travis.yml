@@ -24,7 +24,7 @@ before_install:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   - chmod +rwx ./.travis/main.sh
   - './.travis/main.sh'
-  - docker pull openjdk:11-alpine
+  - docker pull openjdk:11-jdk-slim
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

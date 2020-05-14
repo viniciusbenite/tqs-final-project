@@ -1,5 +1,5 @@
 # Start with a base image containing Java runtime
-FROM openjdk:11-alpine
+FROM openjdk:11-jdk-slim
 
 # Add Maintainer Info
 LABEL maintainer="viniciusribeiro@ua.pt"
