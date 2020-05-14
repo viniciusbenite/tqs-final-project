@@ -6,6 +6,10 @@ addons:
     organization: "viniciusbenite"
     token: ${SONAR_TOKEN}
 
+  apt:
+    packages:
+      - docker-ce
+
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -15,7 +19,7 @@ sudo: required
 
 services:
   - docker
-
+  -
 before_install:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   - chmod +rwx ./.travis/main.sh
