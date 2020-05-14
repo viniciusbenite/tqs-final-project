@@ -22,7 +22,7 @@ before_install:
 
 after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-  - export IMAGE_NAME=vinicius/tqs_final_project-1.0-SNAPSHOT
+  - export IMAGE_NAME=barbershop/barbershop-app:0.1-SNAPSHOP
   - docker build -t $IMAGE_NAME:$COMMIT .
   - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME
@@ -31,3 +31,4 @@ script:
   - ./mvnw package spring-boot:repackage
   - ./mvnw clean install -B
   - ./mvnw clean verify sonar:sonar -Pcoverage
+  - ./mvnw deploy
