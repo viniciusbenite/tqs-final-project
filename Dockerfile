@@ -4,19 +4,9 @@ FROM openjdk:11-jdk-slim
 # Add Maintainer Info
 LABEL maintainer="viniciusribeiro@ua.pt"
 
-# Add a volume pointing to /tmp
 VOLUME /tmp
-
-WORKDIR /
-
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
-
-# The application's jar file
-ARG JAR_FILE=target/tqs_final_project-1.0-SNAPSHOT.jar
-
-# Add the application's jar to the container
-COPY ${JAR_FILE} app.jar
-
-# Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ADD target/tqs_final_project-1.0-SNAPSHOT.jar app.jar
+RUN sh -c 'touch /app.jar'
+ENV JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n"
+EXPOSE 8080 8787
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar" ]
