@@ -18,6 +18,7 @@ services:
 
 before_install:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - './.travis/main.sh'
   - docker pull openjdk:11-jdk-slim
 
 after_success:
@@ -28,6 +29,7 @@ after_success:
   - docker push $IMAGE_NAME
 
 script:
+  - 'docker version'
   - ./mvnw package spring-boot:repackage
   - ./mvnw clean install -B
   - ./mvnw clean verify sonar:sonar -Pcoverage
