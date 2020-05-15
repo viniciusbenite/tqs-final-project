@@ -64,6 +64,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.2.7.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -85,19 +91,19 @@
     </dependencies>
 
 
-    <profiles>
-        <profile>
-            <id>coverage</id>
-            <build>
-                <plugins>
-                    <!--                    <plugin>-->
-                    <!--                        &lt;!&ndash; Build an executable JAR &ndash;&gt;-->
-                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
-                    <!--                        <artifactId>maven-jar-plugin</artifactId>-->
-                    <!--                        <version>3.2.0</version>-->
-                    <!--                        <configuration>-->
-                    <!--                            <archive>-->
-                    <!--                                <manifest>-->
+    <!--    <profiles>-->
+    <!--        <profile>-->
+    <!--            <id>coverage</id>-->
+    <build>
+        <plugins>
+            <!--                    <plugin>-->
+            <!--                        &lt;!&ndash; Build an executable JAR &ndash;&gt;-->
+            <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                        <artifactId>maven-jar-plugin</artifactId>-->
+            <!--                        <version>3.2.0</version>-->
+            <!--                        <configuration>-->
+            <!--                            <archive>-->
+            <!--                                <manifest>-->
                     <!--                                    <mainClass>project.App</mainClass>-->
                     <!--                                </manifest>-->
                     <!--                            </archive>-->
@@ -107,16 +113,6 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <mainClass>project.App</mainClass>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>repackage</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
 
                     <!--            Fail safe plugin-->
@@ -179,10 +175,10 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+        </plugins>
+    </build>
+    <!--        </profile>-->
+    <!--    </profiles>-->
 
 
 </project>
