@@ -1,27 +1,22 @@
 lenguage: java
 jdk: openjdk8
-
 addons:
   sonarcloud:
-    organization: "viniciusbenite"
-    token: ${SONAR_TOKEN}
-
+    organization: viniciusbenite
+    token: "${SONAR_TOKEN}"
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-
+    - "$HOME/.m2/repository"
+    - "$HOME/.sonar/cache"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
 script:
-  - ./mvnw clean install -B spring-boot:repackage
-  - ./mvnw clean verify sonar:sonar -Pcoverage
-
+  - "./mvnw clean install -B spring-boot:repackage"
+  - "./mvnw clean verify sonar:sonar -Pcoverage"
 deploy:
   provider: heroku
   api_key:
-    secure: q02+FYaHF5LGke0ZThu1cDjw66b6Bn8Z8nYzBcX6zqqyov5mVuP8bNAT4G8AY7M43YdBBJ9YUvIf0ZnO+1vKHRrh5Hpqb0p66Fov3A/YF9c9zfhEzcQXTvjkMvHK9Y8jm0Ttc9efUr8GE8tIK3DR6+iD6eZfA6fwUZl1ZRqeH1NQqoNLvVRLSda2yuhIMIhimz4qdGcJVPRiSiei1dlneBRtnMV1IBof6FOCtpnnR6fH34QCJ1iEtwz3fzUvRPfABze0gi4DN5D2rAs894IkfygXNeG4s5v43ftS1P9P7zcFFwNOFbx+OHnQgp2tBpDIrTKtSn44Qs2WZZ6vB7uHiG5+3jtiYj4+bUimOEHixsechgEdEn9Ss2fqZp/NjMGXNb8ld0zyxiN2/yxjQCmrl6wo+JFU7bek8X4Xyg7rvQ3tmUgnZKZMaEObEhV28VlavOcoeUZ2hlzZqrpVD+1ltg4uuOh71EKx+xbrvWHwD3TCQYa0Q7rYUsMGpp1Si0v96CVYYjfAMEztv/zDa5giwsDgAUM/HgogLX8dmZZw/4WpTYtWnnvBAZ5IyKvz9UqBckXwsZd9NfNchMitn1+lU01Su41BaSDlCK5g0w9H/6YwKNBi/Ia2J87HpTk0P3dBjHL1pCPWeJrWSn503rXlebpFlZRgFg9raOE2v+i2H9s=
+    secure: jWqg4s1rkwyNgMTwK3I4t6lh4/IbfaRS3NL3oiHRfRYFYywPxQCvMMUUnG7ACrYOv/K1OtbdaROcT8/h5iuefOIREl6NJnMsKuHsqwVjsO6bVZxCQGWljOrigEdTAcoJdg7JRzK7seUtbZ2eE+nHm/2Nx2I4YPeWc8abNspEiiqGO1Y06TEAq7IDJFzbAau4Y4JS9MbUvy/QH5SHw8eQ85fsm+YzHtGkX125sct+R9HsmyCaicCe6BBtiScaHWHVYDvXbxSdRGOwKfDgFXZrzOs1lqawieHtHypQhJ0LJvMNyGAF/EOfViqWsCQAERkOTP7IUJXWpWTjxYb8ClGr62hnMMG+Mk2SzqlE1Txru9qGCevVkbCDTevmyLpVmVlqfz3M6Clcp+Vtg+g9+RqR2ChGZ2HvNtQpKE/irULS+xFU4doIyt2mcqD0yM6Pocy8Jbz3DBxZMMKTBhO85R82v0yscrkDn3O3io81vgTXzE6AWQMgi2GVmiG3oN6+ei6INzR1ALaiizHLkvRlwwI5mhngCbUtpT7pw+7TgjOFM9fLs01DW/EHecWSP6DzSmiNN0iNPFXf07JvD04Tz/o2KRNdaUbSAqOvNBfLGRuWgEv6NR/iap6peWFpQShlQt4QXtsXcR4xNKhdgHhb8e6v1RyF+C+Sk+HnIR6/GDUS/8I=
   app: tqs-final-project-barbershop
   on:
     all_branches: true
