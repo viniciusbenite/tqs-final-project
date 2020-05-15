@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -cp target/classes:target/dependency/* project.App
+web: java -Dserver.port=$PORT -jar target/tqs_final_project-1.0-SNAPSHOT.jar
