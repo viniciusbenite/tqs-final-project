@@ -75,12 +75,12 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
-            <type>maven-plugin</type>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.maven.plugins</groupId>-->
+        <!--            <artifactId>maven-jar-plugin</artifactId>-->
+        <!--            <version>3.2.0</version>-->
+        <!--            <type>maven-plugin</type>-->
+        <!--        </dependency>-->
 
     </dependencies>
 
@@ -90,23 +90,26 @@
             <id>coverage</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <!-- Build an executable JAR -->
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <mainClass>project.App</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </plugin>
+                    <!--                    <plugin>-->
+                    <!--                        &lt;!&ndash; Build an executable JAR &ndash;&gt;-->
+                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+                    <!--                        <artifactId>maven-jar-plugin</artifactId>-->
+                    <!--                        <version>3.2.0</version>-->
+                    <!--                        <configuration>-->
+                    <!--                            <archive>-->
+                    <!--                                <manifest>-->
+                    <!--                                    <mainClass>project.App</mainClass>-->
+                    <!--                                </manifest>-->
+                    <!--                            </archive>-->
+                    <!--                        </configuration>-->
+                    <!--                    </plugin>-->
 
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>project.App</mainClass>
+                        </configuration>
                         <executions>
                             <execution>
                                 <goals>
