@@ -2,12 +2,14 @@ package project.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import project.models.Reservation;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
 
 @Entity
 @Data    //lombok notations
@@ -21,6 +23,9 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy="users")
+    private Set<Reservation> reservation;
 
     public User(String name, String email, String password) {
         this.name = name;
