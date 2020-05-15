@@ -15,9 +15,9 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 script:
-  - ./mvnw package spring-boot:repackage
   - ./mvnw clean install -B
   - ./mvnw clean verify sonar:sonar -Pcoverage
+  - ./mvnw package spring-boot:repackage
 
 deploy:
   provider: heroku
