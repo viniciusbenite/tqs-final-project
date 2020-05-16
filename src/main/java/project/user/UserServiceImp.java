@@ -24,17 +24,17 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
     public void deleteAll() {
-
+        userRepository.deleteAll();
     }
 
     @Override
     public void deleteUserByName(String name) {
-
+        userRepository.deleteByName(name);
     }
 }

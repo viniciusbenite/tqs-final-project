@@ -6,8 +6,8 @@ public interface UserService {
 
     User getUserByName(String name);
     List<User> getAllUser();
-    User save(User city);
 
+    void save(User user);
     void deleteAll();
     void deleteUserByName(String name);
 }

@@ -1,31 +1,40 @@
-package project.user;
+package project.saloon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import project.saloon.Saloon;
 import project.user.User;
+import project.user.UserRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/Saloon")
+public class SaloonController {
 
     @Autowired
-    private UserService userService;
+    private SaloonService saloonService;
+    @Autowired
+    private UserRepository userRepository;
+
 
     @GetMapping("all")
-    public List<User> all(){
-        return userService.getAllUser();
+    public List<Saloon> all(){
+        return saloonService.getAllSaloon();
     }
 
 
+
+
+    //-----------------------------------------------------------
     @GetMapping("teste")
     public String teste(){
         User a = new User("User" , "user@gmai.com" , "123");
-        userService.save(a);
+        Saloon b = new Saloon();
+        userRepository.save(a);
+        b.setOwner(a);
+        saloonService.save(b);
         return "teste feito";
     }
 
