@@ -1,30 +1,31 @@
-package project.saloon;
+package project.reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import project.service.Service;
 import project.service.ServiceService;
 import project.user.User;
-import project.user.UserRepository;
 import project.user.UserService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/saloon")
-public class SaloonController {
+@RequestMapping("/reservation")
+public class ReservationController {
 
     @Autowired
-    private SaloonService saloonService;
+    private ReservationService reservationService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ServiceService serviceService;
 
 
     @GetMapping("all")
-    public List<Saloon> all(){
-        return saloonService.getAllSaloon();
+    public List<Reservation> all(){
+        return reservationService.getAllReservation();
     }
 
 
@@ -33,11 +34,17 @@ public class SaloonController {
     //-----------------------------------------------------------
     @GetMapping("teste")
     public String teste(){
-        User a = new User("User" , "user@gmai.com" , "123");
-        Saloon b = new Saloon();
-        userService.save(a);
-        b.setOwner(a);
-        saloonService.save(b);
+        Reservation a = new Reservation();
+        User b = new User("User" , "user@gmai.com" , "123");
+        Service c = new Service();
+
+        userService.save(b);
+        serviceService.save(c);
+        a.setUser(b);
+        a.setService(c);
+
+        reservationService.save(a);
+
         return "teste feito";
     }
 

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import project.models.Schedule;
-import project.models.Service;
+import project.schedule.Schedule;
+import project.service.Service;
 import project.user.User;
 
 import javax.persistence.*;

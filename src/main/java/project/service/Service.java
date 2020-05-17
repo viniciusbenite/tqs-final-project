@@ -1,8 +1,11 @@
-package project.models;
+package project.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import project.schedule.Schedule;
+import project.reservation.Reservation;
 import project.saloon.Saloon;
 
 import javax.persistence.*;
@@ -34,11 +37,13 @@ public class Service implements Serializable {
     private Saloon saloon;
 
     // Horario do serviço
+    @JsonIgnore
     @OneToMany(mappedBy="service")
     private Set<Schedule> schedules;
 
 
     // reservas do serviço
+    @JsonIgnore
     @OneToMany(mappedBy="services")
     private Set<Reservation> reservation;
 

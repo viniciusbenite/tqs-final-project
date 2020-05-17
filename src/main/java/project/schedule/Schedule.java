@@ -1,9 +1,10 @@
-package project.models;
+package project.schedule;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.saloon.Saloon;
+import project.service.Service;
 
 import javax.persistence.*;
 import java.sql.Time;

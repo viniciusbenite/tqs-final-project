@@ -1,8 +1,9 @@
-package project.models;
+package project.reservation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import project.service.Service;
 import project.user.User;
 
 import javax.persistence.*;
@@ -33,7 +34,11 @@ public class Reservation implements Serializable {
     private Service services;
 
 
+    public void setUser(User user) {
+        this.users = user;
+    }
 
-
-
+    public void setService(Service service) {
+        this.services = service;
+    }
 }
