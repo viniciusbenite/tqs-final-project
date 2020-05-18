@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -14,7 +15,7 @@ public class ScheduleServiceImp implements ScheduleService {
     private ScheduleRepository scheduleRepository;
 
     @Override
-    public Schedule getScheduleById(Long id) {
+    public Optional<Schedule> getScheduleById(Long id) {
         return scheduleRepository.getScheduleById(id);
     }
 

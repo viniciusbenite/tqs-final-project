@@ -6,13 +6,16 @@ import org.springframework.transaction.annotation.Transactional;
 import project.service.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     List<Schedule> findAll();
-    Schedule getScheduleById(Long id);
+
+    //    Schedule getScheduleById(Long id);
+    Optional<Schedule> getScheduleById(Long id);
 
     void deleteAll();
     void deleteById(Long id);
