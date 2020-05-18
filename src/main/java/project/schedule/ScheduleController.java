@@ -45,6 +45,8 @@ public class ScheduleController {
                     schedule.setStartTime(newSchedule.getStartTime());
                     schedule.setEndTime(newSchedule.getEndTime());
                     schedule.setId(newSchedule.getId());
+                    schedule.setSallon(newSchedule.getSallon());
+                    schedule.setService(newSchedule.getService());
                     return scheduleRepository.save(schedule);
                 })
                 .orElseGet(() -> {

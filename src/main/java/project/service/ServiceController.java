@@ -45,6 +45,9 @@ public class ServiceController {
                     service.setPrice(newService.getPrice());
                     service.setDescription(newService.getDescription());
                     service.setAvailable(newService.getAvailable());
+                    service.setSaloon(newService.getSaloon());
+                    service.setSchedules(newService.getSchedules());
+                    service.setReservation(newService.getReservation());
                     return serviceRepository.save(service);
                 })
                 .orElseGet(() -> {

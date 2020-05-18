@@ -43,6 +43,8 @@ public class SaloonController {
         return saloonRepository.findById(id)
                 .map(saloon -> {
                     saloon.setOwner(newSaloon.getOwner());
+                    saloon.setServices(newSaloon.getServices());
+                    saloon.setSchedule(newSaloon.getSchedule());
                     saloon.setName(newSaloon.getName());
                     saloon.setPostalCode(newSaloon.getPostalCode());
                     saloon.setCity(newSaloon.getCity());
@@ -50,6 +52,7 @@ public class SaloonController {
                     saloon.setStatus(newSaloon.getStatus());
                     saloon.setType(newSaloon.getType());
                     saloon.setContact(newSaloon.getContact());
+
                     return saloonRepository.save(saloon);
                 })
                 .orElseGet(() -> {
