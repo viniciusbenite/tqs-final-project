@@ -9,6 +9,10 @@ export default class NavbarDono extends Component {
     handleToggle = () => {
         this.setState({ isOpen: !this.state.isOpen });
     };
+    handleCheck(e) {
+        logout();
+     }
+
     render() {
         return (
             <nav className="navbar">
@@ -30,7 +34,7 @@ export default class NavbarDono extends Component {
                         <li>
                             <Link to="/gestao/">Gestão</Link>
                         </li>
-                        <li onClick={logout()}><Link to="/">Logout</Link></li>
+                        <li onClick={this.handleCheck.bind(this)}><Link to="/">Logout</Link></li>
                     </ul>
                 </div>
             </nav>

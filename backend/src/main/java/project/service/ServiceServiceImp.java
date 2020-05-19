@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -16,6 +17,11 @@ public class ServiceServiceImp implements ServiceService {
     @Override
     public project.service.Service getServiceByName(String name) {
         return serviceRepository.getServiceByName(name);
+    }
+
+    @Override
+    public Optional<project.service.Service> getServiceById(Long id) {
+        return serviceRepository.getServiceById(id);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package project.reservation;
 
-import project.saloon.Saloon;
-import project.user.User;
-
 import java.util.List;
+import java.util.Optional;
 
 public interface ReservationService {
 
-    Reservation getReservationById(Long id);
+    Optional<Reservation> getReservationById(Long id);
+
     List<Reservation> getAllReservation();
 
     void save(Reservation reservation);

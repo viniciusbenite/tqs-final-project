@@ -13,9 +13,12 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByNameContainsIgnoreCase(String name);
+
     List<User> findAll();
+
+    Optional<User> getUserById(Long id);
 
     void deleteAll();
     void deleteByName(String name);
-    
+
 }

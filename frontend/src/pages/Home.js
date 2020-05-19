@@ -10,7 +10,7 @@ class Home extends Component {
     
     render() {
 
-    
+        console.log(localStorage.getItem("user_email"));
       
     
      

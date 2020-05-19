@@ -14,6 +14,8 @@ import Barbeiros from "./pages/Barbeiros";
 import Gestao from "./pages/Gestao";
 import Reservas from "./pages/Reservas";
 import Login from "./pages/Login";
+import SignUpDono from "./pages/SignUpDono";
+import SignUpCliente from "./pages/SignUpCliente";
 import SingleBarbeiro from "./pages/SingleBarbeiro";
 import Cabeleireiros from "./pages/Cabeleireiros";
 import Users from "./pages/Users";
@@ -39,17 +41,19 @@ const Routes = () => (
    
     <Switch>
     <Route exact path="/" component={Login} />
-    <Route exact path="/cabeleireiros/" component ={Cabeleireiros} />
-    <Route exact path="/cabeleireiros/:slug" component=
+    <Route path="/registarCliente" component={SignUpCliente} />
+    <Route path="/registar" component={SignUpDono} />
+    <PrivateRoute exact path="/cabeleireiros/" component ={Cabeleireiros} />
+    <PrivateRoute exact path="/cabeleireiros/:slug" component=
             {SingleCabeleireiro} />
-    <Route exact path="/barbeiros/" component ={Cabeleireiros} />
-    <Route exact path="/barbeiros/:slug" component=
+    <PrivateRoute exact path="/barbeiros/" component ={Cabeleireiros} />
+    <PrivateRoute exact path="/barbeiros/:slug" component=
             {SingleBarbeiro} />        
-    <Route path="/home/" component ={Home} />
-    <Route exact path="/users/" component ={Users} />
-    <Route exact path="/gestao/" component ={Gestao} />
-    <Route exact path="/reservas/" component ={Reservas} />
-    <Route exact path="/marcacoes/" component ={ReservasDono} />
+    <PrivateRoute path="/home/" component ={Home} />
+    <PrivateRoute exact path="/users/" component ={Users} />
+    <PrivateRoute exact path="/gestao/" component ={Gestao} />
+    <PrivateRoute exact path="/reservas/" component ={Reservas} />
+    <PrivateRoute exact path="/marcacoes/" component ={ReservasDono} />
         <Route component={Error} />
     </Switch>
     </BrowserRouter>

@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import img from '../images/login.jpg';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 89vh;
+  background-size: contain;
+  background-image: url(${img});
+
 `;
 
 export const Form = styled.form`
-  width: 400px;
+  width: 500px;
   background: #fff;
-  padding: 20px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +23,7 @@ export const Form = styled.form`
     margin: 10px 0 40px;
   }
   p {
-    color: #ff3333;
+    color: #ff3433;
     margin-bottom: 15px;
     border: 1px solid #ff3333;
     padding: 10px;
@@ -42,7 +46,7 @@ export const Form = styled.form`
   button {
     color: #fff;
     font-size: 16px;
-    background: #fc6963;
+    background: #80002f;
     height: 56px;
     border: 0;
     border-radius: 5px;

@@ -9,6 +9,11 @@ export default class NavbarCliente extends Component {
     handleToggle = () => {
         this.setState({ isOpen: !this.state.isOpen });
     };
+
+    handleCheck(e) {
+        logout();
+     }
+
     render() {
         return (
             <nav className="navbar">
@@ -27,7 +32,7 @@ export default class NavbarCliente extends Component {
                         <li>
                             <Link to="/reservas/">As minhas reservas</Link>
                         </li>
-                        <li onClick={logout()}><Link to="/">Logout</Link></li>
+                        <li onClick={this.handleCheck.bind(this)}><Link to="/">Logout</Link></li>
                     </ul>
                 </div>
             </nav>

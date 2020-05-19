@@ -34,6 +34,46 @@ public class Schedule {
 
     // horario de um serviço    (um serviço vai ter varios horarios que os clientes vão poder escolher)
     @ManyToOne
-    @JoinColumn(name="service_id")
+    @JoinColumn(name = "service_id")
     private Service service;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    public Saloon getSallon() {
+        return sallon;
+    }
+
+    public void setSallon(Saloon sallon) {
+        this.sallon = sallon;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
 }

@@ -7,8 +7,13 @@ export const logout = () => {
   localStorage.removeItem(TOKEN_EMAIL);
   localStorage.removeItem(TOKEN_TYPE);
 };
+
+
+// PARA GET:
+
+// GET USERS DA API DO SPRING
 export default function getUsers()  {
-  return fetch('http://localhost:3000/user/all')
+  return fetch('http://localhost:3000/user')
         .then((response) => { 
             return response.json().then((data) => {
                

@@ -8,7 +8,11 @@ import getUsers from "../services/auth";
 import { Form, Container } from "./styles";
 
 
-
+const styles = {
+  paperContainer: {
+      backgroundImage: `url(${Image})`
+  }
+}
 
 class Login extends Component {
   state = {
@@ -26,14 +30,21 @@ class Login extends Component {
       try {
 
         getUsers().then(data => {
+         
+          if(data.length!=0){
     
           data.map(user => {
-            if(user.email==email && user.password==password) { this.props.history.push("/home/"); localStorage.setItem("user_email", user.email) ; localStorage.setItem("user_type", user.type)}
+            if(user.email==email && user.password==password) { console.log("devia entrar"); localStorage.setItem("user_email", user.email) ; localStorage.setItem("user_type", user.type); this.props.history.push("/home/"); }
             else this.setState({
               error:
                 "Houve um problema com o login, verifique suas credenciais...."
             });
           })
+        }
+        else this.setState({
+          error:
+            "Houve um problema com o login, verifique suas credenciais...."
+        });
 
        }).catch((err) => {
          console.log(err);
@@ -56,7 +67,7 @@ class Login extends Component {
 
 
   render() {
-    console.log(localStorage.getItem("user_type"));
+    
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>
@@ -69,14 +80,20 @@ class Login extends Component {
           />
           <input
             type="password"
-            placeholder="Senha"
+            placeholder="Password"
             onChange={e => this.setState({ password: e.target.value })}
           />
+          <h5></h5>
           <button type="submit">Entrar</button>
+          <h5></h5>
           <hr />
-          <Link to="/signup">Criar conta grátis</Link>
+          <h5></h5>
+          <Link to="/registarCliente">Criar conta como Cliente</Link>
+         
+          <h5></h5>
+          <Link to="/registar">Criar conta como Dono</Link>
         </Form>
-      </Container>
+        </Container>
     );
   }
 }

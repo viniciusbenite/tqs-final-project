@@ -7,6 +7,7 @@ import project.saloon.Saloon;
 import project.user.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -16,6 +17,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     void deleteAll();
     void deleteById(Long id);
 
-    Reservation getReservationById(Long id);
+    Optional<Reservation> getReservationById(Long id);
 
 }

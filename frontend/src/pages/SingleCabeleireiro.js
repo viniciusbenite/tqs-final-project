@@ -12,6 +12,9 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
+import NavbarCliente from "../components/NavbarCliente";
+import NavbarDono from "../components/NavbarDono";
+
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -81,6 +84,7 @@ export default class SingleCabeleireiro extends Component {
         const [mainImg,...defaultImg] = imagens;
         return(
         <>
+        {localStorage.getItem("user_type")=="dono" ? <NavbarDono></NavbarDono>:<NavbarCliente></NavbarCliente> }
         <StyledHero img={mainImg ||
           this.state.defaultBcg}>
             <Banner title={`${nome}`} subtitle='Faça já a sua marcação!'>

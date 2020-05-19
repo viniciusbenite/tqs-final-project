@@ -41,4 +41,36 @@ public class Reservation implements Serializable {
     public void setService(Service service) {
         this.services = service;
     }
+
+    public User getUser() {
+        return users;
+    }
+
+    public Service getService() {
+        return services;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
 }
