@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar target/tqs_final_project-1.0-SNAPSHOT.jar

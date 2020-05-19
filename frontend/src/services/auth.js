@@ -1,0 +1,22 @@
+
+export const TOKEN_EMAIL = "user_email";
+export const TOKEN_TYPE = "user_type";
+export const isAuthenticated = () => localStorage.getItem("user_email") !== null;
+export const getTokenEmail = () => localStorage.getItem(TOKEN_EMAIL);
+export const logout = () => {
+  localStorage.removeItem(TOKEN_EMAIL);
+  localStorage.removeItem(TOKEN_TYPE);
+};
+export default function getUsers()  {
+  return fetch('http://localhost:3000/user/all')
+        .then((response) => { 
+            return response.json().then((data) => {
+               
+                return data;
+            }).catch((err) => {
+                console.log(err);
+            }) 
+        });
+}
+
+  
