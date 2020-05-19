@@ -1,4 +1,4 @@
-package project.models;
+package project.home_page;
 
 public class Greeting {
 

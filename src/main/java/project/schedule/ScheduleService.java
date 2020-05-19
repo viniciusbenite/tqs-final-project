@@ -3,10 +3,12 @@ package project.schedule;
 import project.service.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ScheduleService {
 
-    Schedule getScheduleById(Long id);
+    Optional<Schedule> getScheduleById(Long id);
+
     List<Schedule> getAllSchedule();
 
     void save(Schedule schedule);

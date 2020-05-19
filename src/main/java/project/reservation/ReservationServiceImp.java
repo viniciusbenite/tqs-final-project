@@ -3,10 +3,9 @@ package project.reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.saloon.Saloon;
-import project.user.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,7 +16,7 @@ public class ReservationServiceImp implements ReservationService {
 
 
     @Override
-    public Reservation getReservationById(Long id) {
+    public Optional<Reservation> getReservationById(Long id) {
         return reservationRepository.getReservationById(id);
     }
 

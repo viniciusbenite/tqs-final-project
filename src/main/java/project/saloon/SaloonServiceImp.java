@@ -7,6 +7,7 @@ import project.user.User;
 import project.user.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,6 +19,11 @@ public class SaloonServiceImp implements SaloonService {
     @Override
     public User getSaloonByName(String name) {
         return saloonRepository.findByNameContainsIgnoreCase(name);
+    }
+
+    @Override
+    public Optional<Saloon> getSaloonById(Long id) {
+        return saloonRepository.findById(id);
     }
 
     @Override
