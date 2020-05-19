@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "react-calendar": "^3.0.1",
     "react-datepicker": "^2.15.0"
   }

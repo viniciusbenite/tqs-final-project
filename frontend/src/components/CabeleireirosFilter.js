@@ -10,7 +10,7 @@ export default function CabeleireirosFilter({cabeleireiros}) {
 const context = useContext(CabeleireirosContext);
 console.log(context);
 const {
-    handleChange,
+    handleChangeCabeleireiros,
     nome,
     cidade,
   
@@ -53,7 +53,7 @@ cidades = cidades.map((item, index)=>{
 <label htmlFor="nome">Nome</label>
 <div className="search-inputs">
  <input type="String" name="nome" id="nome"
- value={nome} onChange={handleChange}
+ value={nome} onChange={handleChangeCabeleireiros}
  
  className="search-input"/>  
 </div>
@@ -63,7 +63,7 @@ cidades = cidades.map((item, index)=>{
 <label htmlFor="cidade">cidade</label>
 <div className="cidade-inputs">
  <input type="String" name="cidade" id="cidade"
- value={cidade} onChange={handleChange}
+ value={cidade} onChange={handleChangeCabeleireiros}
  
  className="search-input"/>  
 </div>

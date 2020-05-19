@@ -1,21 +1,22 @@
 import React from 'react'
 import Hero from "../components/Hero";
-import Banner from "../components/Banner";
-import { Link } from 'react-router-dom';
+import NavbarCliente from "../components/NavbarCliente";
+import NavbarDono from "../components/NavbarDono";
 import BarbeirosContainer from '../components/BarbeirosContainer';
+import Banner from "../components/Banner";
+
 const Barbeiros = () => {
     return (
-    <>
-    <Hero hero="cabeleireirosHero">;
-        <Banner title="our cabeleireiros">
-
-            <Link to='/' className="btn-primary">
-                return home 
-                </Link>
-        </Banner>
-    </Hero>
-    <BarbeirosContainer />
-    </>
-    );
+        <>
+        {localStorage.getItem("user_type")=="dono" ? <NavbarDono></NavbarDono>:<NavbarCliente></NavbarCliente> }
+        <Hero hero="cabeleireirosHero">;
+            <Banner title="Barbeiros">
+    
+               
+            </Banner>
+        </Hero>
+        <BarbeirosContainer />
+        </>
+        );
 };
 export default Barbeiros;

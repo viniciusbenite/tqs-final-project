@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import items from './data'
+import getSaloes from './data';
+
 
 const CabeleireirosContext = React.createContext();
 
@@ -8,6 +9,8 @@ class CabeleireirosProvider extends Component {
     state = {
         cabeleireiros: [],
         sortedCabeleireiros: [],
+        barbeiros:[],
+        sortedBarbeiros:[],
         
         loading: true,
         nome:"",
@@ -16,37 +19,97 @@ class CabeleireirosProvider extends Component {
     // getData
 
     componentDidMount() {
-        // this.getData
-        let cabeleireiros = this.formatData(items);
+
+        var cabeleireiros=[];
+        var barbeiros=[];
         
-    
+        getSaloes().then(data => {
+            
+          
+        cabeleireiros = this.formatDataCabeleireiros(data);
+        barbeiros = this.formatDataBarbeiros(data);
 
         this.setState({
-            cabeleireiros,
+            cabeleireiros:cabeleireiros,
+            barbeiros:barbeiros,
+            sortedBarbeiros:barbeiros,
             
             sortedCabeleireiros: cabeleireiros,
             loading: false,
             
         });
+        });
+        
+    
+
+        
     }
 
-    formatData(items) {
-        let tempItems = items.map(item => {
-            let id = item.sys.id
-            let imagens = item.fields.imagens.map(image =>
-                image.fields.file.url);
+    formatDataCabeleireiros(items) {
 
-            let cabeleireiro = { ...item.fields, imagens, id }
-            return cabeleireiro;
+        let tempItems=[];
+        
+        items.map(item => {
+            let id = item.id;
+            let nome = item.name;
+            let slug = "salao";
+            let cidade = item.city;
+            let descricao=item.description;
+            let morada=item.address;
+            let imagens = [item.image];
+            let type = item.type;
+
+            let cabeleireiro = {nome,morada,descricao,slug,cidade,type,imagens,id }
+            if(type=="Cabeleireiro") tempItems.push(cabeleireiro); 
+            
         });
+       
+       
+       
+      
         return tempItems
     }
+
+    formatDataBarbeiros(items) {
+
+        let tempItems=[];
+    
+        items.map(item => {
+            let id = item.id;
+            let nome = item.name;
+            let slug = "salao";
+            let cidade = item.city;
+            let descricao=item.description;
+            let morada=item.address;
+            let imagens = [item.image];
+            let type = item.type;
+
+            let barbeiro = {nome,morada,descricao,slug,cidade,type,imagens,id }
+            if(type=="Barbeiro") tempItems.push(barbeiro); 
+            
+        });
+       
+       
+       
+      
+        return tempItems
+    }
+
+
     getCabeleireiro = (slug) => {
         let tempCabeleireiros = [...this.state.cabeleireiros];
         const cabeleireiro = tempCabeleireiros.find(cabeleireiro => cabeleireiro.slug === slug);
         return cabeleireiro;
     };
-handleChange = event => {
+
+
+    getBarbeiro = (slug) => {
+        let tempBarbeiros = [...this.state.barbeiros];
+        const barbeiro = tempBarbeiros.find(barbeiro => barbeiro.slug === slug);
+        return barbeiro;
+    };
+
+handleChangeCabeleireiros = event => {
     const target = event.target;
     const value = target.nome === 'checkbox' ?
     target.checked : target.value;
@@ -57,46 +120,102 @@ handleChange = event => {
     this.filterCabeleireiros
     );
 };
-filterCabeleireiros = () => {
-    let{
-        cabeleireiros, 
-        nome,
-        cidade,
-    } = this.state
-
-// all the cabeleireiros
-let tempCabeleireiros = [...cabeleireiros];
 
 
-// filter by nome 
-
-if(nome !== "") {
-    tempCabeleireiros = tempCabeleireiros.filter(cabeleireiro => cabeleireiro.nome ===
-    nome);
-}
-
-
-
-// filter by cidade
-if(cidade !== "") {
-    tempCabeleireiros = tempCabeleireiros.filter(cabeleireiro => cabeleireiro.cidade ===
-    cidade);
-}
+    handleChangeBarbeiros = event => {
+        const target = event.target;
+        const value = target.nome === 'checkbox' ?
+        target.checked : target.value;
+        const name = event.target.name;
+    this.setState({
+        [name] :value 
+    },
+        this.filterBarbeiros
+        );
+    };
 
 
+    filterBarbeiros = () => {
+        let{
+            barbeiros, 
+            nome,
+            cidade,
+        } = this.state
 
-// change state 
-this.setState({
-    sortedCabeleireiros:tempCabeleireiros
-})
-};
+    // all the cabeleireiros
+    let tempBarbeiros = [...barbeiros];
+
+
+    // filter by nome 
+
+    if(nome !== "") {
+        tempBarbeiros = tempBarbeiros.filter(barbeiro => barbeiro.nome ===
+        nome);
+    }
+
+
+
+    // filter by cidade
+    if(cidade !== "") {
+        tempBarbeiros = tempBarbeiros.filter(barbeiro => barbeiro.cidade ===
+        cidade);
+    }
+
+
+
+    // change state 
+    this.setState({
+        sortedBarbeiros:tempBarbeiros
+    })
+    };
+
+
+
+    filterCabeleireiros = () => {
+        let{
+            cabeleireiros, 
+            nome,
+            cidade,
+        } = this.state
+    
+    // all the cabeleireiros
+    let tempCabeleireiros = [...cabeleireiros];
+    
+    
+    // filter by nome 
+    
+    if(nome !== "") {
+        tempCabeleireiros = tempCabeleireiros.filter(cabeleireiro => cabeleireiro.nome ===
+        nome);
+    }
+    
+    
+    
+    // filter by cidade
+    if(cidade !== "") {
+        tempCabeleireiros = tempCabeleireiros.filter(cabeleireiro => cabeleireiro.cidade ===
+        cidade);
+    }
+    
+    
+    
+    // change state 
+    this.setState({
+        sortedCabeleireiros:tempCabeleireiros
+    })
+    };
+    
+
+
     render() {
         return (
         <CabeleireirosContext.Provider 
         value={{
             ...this.state,
             getCabeleireiro: this.getCabeleireiro,
-            handleChange: this.handleChange
+            handleChangeCabeleireiros: this.handleChangeCabeleireiros,
+            getBarbeiro: this.getBarbeiro,
+            handleChangeBarbeiros: this.handleChangeBarbeiros,
             }}>
             {this.props.children}
         </CabeleireirosContext.Provider>

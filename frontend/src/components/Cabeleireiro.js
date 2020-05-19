@@ -5,11 +5,12 @@ import PropTypes from "prop-types";
 export default function Cabeleireiro({ cabeleireiro }) {
     const { nome, slug, imagens, cidade } = cabeleireiro;
 
-    
+    var Url=imagens[0];
+    console.log(Url);
     return <article className="cabeleireiro">
 
         <div className="img-container">
-            <img src={imagens[0] || defaultImg}
+            <img src={Url} 
                 alt="single cabeleireiro" />
             <div className="price-top">
             <h6>{cidade}</h6>

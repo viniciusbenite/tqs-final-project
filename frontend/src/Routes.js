@@ -46,7 +46,7 @@ const Routes = () => (
     <PrivateRoute exact path="/cabeleireiros/" component ={Cabeleireiros} />
     <PrivateRoute exact path="/cabeleireiros/:slug" component=
             {SingleCabeleireiro} />
-    <PrivateRoute exact path="/barbeiros/" component ={Cabeleireiros} />
+    <PrivateRoute exact path="/barbeiros/" component ={Barbeiros} />
     <PrivateRoute exact path="/barbeiros/:slug" component=
             {SingleBarbeiro} />        
     <PrivateRoute path="/home/" component ={Home} />

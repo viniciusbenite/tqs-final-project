@@ -27,8 +27,11 @@ public class Saloon implements Serializable {
     private String city;
     private String country;
     private String status;  // open or closed
-    private String type;    // salão cabeleireiro / barbeiro / esteticista ...
+    private String type;    // salão cabeleireiro / barbeiro ...
     private String contact;
+    private String description;
+    private String image;
+    private String address;
 
     // Horario do salão
     @OneToOne(cascade = CascadeType.ALL)
@@ -46,6 +49,21 @@ public class Saloon implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "saloon")
     private Set<Service> services;
+
+
+    public Saloon(String name, String postalCode, String city,String country,String status, String type, String contact,String description,String image,String address,User owner) {
+        this.name=name;
+        this.postalCode=postalCode;
+        this.city=city;
+        this.country=country;
+        this.status=status;
+        this.type=type;
+        this.contact=contact;
+        this.description=description;
+        this.address=address;
+        this.owner=owner;
+        this.image=image;
+    }
 
     public Long getId() {
         return id;
