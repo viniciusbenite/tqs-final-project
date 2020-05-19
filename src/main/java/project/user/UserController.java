@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static project.constants.Paths.USER;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = USER)
 public class UserController {
 
     @Autowired
@@ -16,7 +18,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @ApiOperation("Get all users")
-    @GetMapping("/")
+    @GetMapping
     public List<User> all() {
         return userService.getAllUser();
     }

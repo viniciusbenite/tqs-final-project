@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static project.constants.Paths.RESERVATION;
+
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping(value = RESERVATION)
 @Api(value = "Métodos para gerenciar reservas")
 public class ReservationController {
 
@@ -19,9 +21,9 @@ public class ReservationController {
     private ReservationRepository reservationRepository;
 
     @ApiOperation("Get all reservations")
-    @GetMapping("/")
+    @GetMapping()
     public List<Reservation> all() {
-        return reservationService.getAllReservation();
+        return reservationRepository.findAll();
     }
 
     @ApiOperation("Create a new reservation")

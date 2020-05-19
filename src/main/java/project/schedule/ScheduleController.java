@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static project.constants.Paths.SCHEDULE;
+
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping(value = SCHEDULE)
 public class ScheduleController {
 
     @Autowired
@@ -16,7 +18,7 @@ public class ScheduleController {
     private ScheduleRepository scheduleRepository;
 
     @ApiOperation("Get all schedule")
-    @GetMapping("/")
+    @GetMapping
     public List<Schedule> all() {
         return scheduleService.getAllSchedule();
     }

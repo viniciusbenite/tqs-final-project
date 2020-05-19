@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static project.constants.Paths.SERVICE;
+
 @RestController
-@RequestMapping("/service")
+@RequestMapping(value = SERVICE)
 public class ServiceController {
 
     @Autowired
@@ -16,7 +18,7 @@ public class ServiceController {
     private ServiceRepository serviceRepository;
 
     @ApiOperation("Get all services")
-    @GetMapping("/")
+    @GetMapping
     public List<Service> all() {
         return serviceService.getAllService();
     }

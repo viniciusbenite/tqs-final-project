@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static project.constants.Paths.SALOON;
+
 @RestController
-@RequestMapping("/saloon")
+@RequestMapping(value = SALOON)
 @Api(value = "Métodos para gerenciar salões")
 public class SaloonController {
 
@@ -18,7 +20,7 @@ public class SaloonController {
     private SaloonRepository saloonRepository;
 
     @ApiOperation("Get all saloons")
-    @GetMapping("/")
+    @GetMapping
     public List<Saloon> all() {
         return saloonService.getAllSaloon();
     }
