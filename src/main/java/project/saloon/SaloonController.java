@@ -2,6 +2,9 @@ package project.saloon;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import project.user.User;
+import project.user.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

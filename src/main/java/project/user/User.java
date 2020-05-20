@@ -1,11 +1,8 @@
 package project.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import project.reservation.Reservation;
-import project.saloon.Saloon;
+import project.models.Reservation;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +14,6 @@ import java.util.Set;
 @Entity
 @Data    //lombok notations
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")      // "user" is a reserved keyword for postgre so table name has to be "users"
 public class User implements Serializable {
 
@@ -29,8 +25,6 @@ public class User implements Serializable {
     private String password;
     private String tipo;
 
-    // reservas do cliente
-    @JsonIgnore
     @OneToMany(mappedBy="users")
     private Set<Reservation> reservation;
 

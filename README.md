@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/viniciusbenite/tqs-final-project.svg?branch=master)](https://travis-ci.org/viniciusbenite/tqs-final-project)
+
 # TQS Final project
 ## Final project for Software test and quality assurance of Aveiro University
 
@@ -12,7 +14,7 @@ DevOps: [Bernardo Rodriguez](https://github.com/bernasrodrigues) - 88835
 Team Manager: [Alina Yanchuk](https://github.com/alina-yanchuk02) - 89093
 
 ### Objectives
-We should work in teams to specify and implement a medium-sized project, comprising a multi-layered, enterprise web project.application and a Software Quality Assurance (SQA) strategy, applied throughout the software engineering process.The results should include:
+We should work in teams to specify and implement a medium-sized project, comprising a multi-layered, enterprise web project.homepage and a Software Quality Assurance (SQA) strategy, applied throughout the software engineering process.The results should include:
 
   • Axis I:software product (functional specification,system architecture and implementation).
 
@@ -20,7 +22,7 @@ We should work in teams to specify and implement a medium-sized project, compris
 
 ### Product definition
 
-The final product of this project cosists in a web project.application to help users to find the best option for a hair/barber shop.
+The final product of this project cosists in a web project.homepage to help users to find the best option for a hair/barber shop.
 
 
 

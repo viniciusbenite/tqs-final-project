@@ -1,0 +1,22 @@
+lenguage: java
+jdk: openjdk8
+addons:
+  sonarcloud:
+    organization: viniciusbenite
+    token: "${SONAR_TOKEN}"
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+    - "$HOME/.sonar/cache"
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+script:
+  - "./mvnw clean install -B"
+  - "./mvnw clean verify sonar:sonar -Pcoverage"
+deploy:
+  provider: heroku
+  api_key:
+    secure: jWqg4s1rkwyNgMTwK3I4t6lh4/IbfaRS3NL3oiHRfRYFYywPxQCvMMUUnG7ACrYOv/K1OtbdaROcT8/h5iuefOIREl6NJnMsKuHsqwVjsO6bVZxCQGWljOrigEdTAcoJdg7JRzK7seUtbZ2eE+nHm/2Nx2I4YPeWc8abNspEiiqGO1Y06TEAq7IDJFzbAau4Y4JS9MbUvy/QH5SHw8eQ85fsm+YzHtGkX125sct+R9HsmyCaicCe6BBtiScaHWHVYDvXbxSdRGOwKfDgFXZrzOs1lqawieHtHypQhJ0LJvMNyGAF/EOfViqWsCQAERkOTP7IUJXWpWTjxYb8ClGr62hnMMG+Mk2SzqlE1Txru9qGCevVkbCDTevmyLpVmVlqfz3M6Clcp+Vtg+g9+RqR2ChGZ2HvNtQpKE/irULS+xFU4doIyt2mcqD0yM6Pocy8Jbz3DBxZMMKTBhO85R82v0yscrkDn3O3io81vgTXzE6AWQMgi2GVmiG3oN6+ei6INzR1ALaiizHLkvRlwwI5mhngCbUtpT7pw+7TgjOFM9fLs01DW/EHecWSP6DzSmiNN0iNPFXf07JvD04Tz/o2KRNdaUbSAqOvNBfLGRuWgEv6NR/iap6peWFpQShlQt4QXtsXcR4xNKhdgHhb8e6v1RyF+C+Sk+HnIR6/GDUS/8I=
+  app: tqs-final-project-barbershop
+  on:
+    all_branches: true

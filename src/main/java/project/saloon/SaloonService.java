@@ -5,6 +5,9 @@ import project.user.User;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface SaloonService {
 
     User getSaloonByName(String name);
