@@ -1,8 +1,10 @@
 package project.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import project.models.Reservation;
+import project.reservation.Reservation;
+import project.saloon.Saloon;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,13 +27,14 @@ public class User implements Serializable {
     private String password;
     private String tipo;
 
-    @OneToMany(mappedBy="users")
+    // reservas do cliente
+    @JsonIgnore
+    @OneToMany(mappedBy = "users")
     private Set<Reservation> reservation;
-
 
     // saloes ao qual ele é o dono
     @JsonIgnore
-    @OneToMany(mappedBy="owner")
+    @OneToMany(mappedBy = "owner")
     private Set<Saloon> saloons;
 
 
@@ -41,9 +44,6 @@ public class User implements Serializable {
         this.email = email;
         this.password = get_SHA_512_SecurePassword(password, "1234");
     }
-
-
-
 
     // generate password
     public String get_SHA_512_SecurePassword(String passwordToHash, String salt){
