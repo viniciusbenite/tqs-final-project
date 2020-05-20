@@ -19,22 +19,12 @@ public class SaloonController {
 
     @Autowired
     private SaloonService saloonService;
-
     @Autowired
     private SaloonRepository saloonRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @ApiOperation("Get all saloons")
     @GetMapping
     public List<Saloon> all() {
-        User dono=new User("Alina Yanchuk","alina@gmail.com","ola","dono");
-        userRepository.save(dono);
-        Saloon c=new Saloon("Beldade","3100-480","Pombal","Portugal","Aberto","Cabeleireiro","911882438","O melhor cabeleireiro de Portugal e arredores!","https://fotos.vivadecora.com.br/decoracao-salao-de-beleza-piso-de-porcelanato-claro-e-cadeira-de-couro-preta-revistavd-187516-square_cover_xsmall.jpg","Rua Dona Amália",dono);
-        saloonRepository.save(c);
-        Saloon b=new Saloon("Machos","3100-480","Aveiro","Portugal","Aberto","Barbeiro","951882438","O melhor barbeiro de Portugal e arredores!","https://blog.mensmarket.com.br/wp-content/uploads/2019/01/salao-cabeleireiro-masculino-600x300.png","Rua Don José",dono);
-        saloonRepository.save(b);
         return saloonService.getAllSaloon();
     }
 
