@@ -42,10 +42,18 @@ public class User implements Serializable {
 
 
 
+    public User(String name, String email, String password, String tipo) {
+        this.name = name;
+        this.email = email;
+        this.password = get_SHA_512_SecurePassword(password, "1234");
+        this.tipo = tipo;
+    }
+
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = get_SHA_512_SecurePassword(password, "1234");
+        this.tipo = "cliente";
     }
 
 
