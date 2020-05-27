@@ -14,27 +14,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import NavbarCliente from "../components/NavbarCliente";
 import NavbarDono from "../components/NavbarDono";
+import api from "../services/api";
 
-
-const useStyles = makeStyles((theme) => ({
-    button: {
-        display: 'block',
-        marginTop: theme.spacing(2),
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-}));
 
 export default class SingleCabeleireiro extends Component {
-    state = {
-        isActive:false
-    }
 
-    handleChangeService(event) {
-        this.setState({value: event.target.value});
-    }
     handleChangeDate = date => {
         this.setState({
             startDate: date
@@ -43,29 +27,46 @@ export default class SingleCabeleireiro extends Component {
             isActive: true
         })
     };
-    handleSubmit(event) {
-        alert('Reservation done! (' + this.state.value + ')');
+    handleSubmit = async event => {
+        const { servico, hour, startDate } = this.state;
         event.preventDefault();
+
+        try {
+            console.log(servico)
+            console.log(startDate)
+            console.log(hour)
+            let d = new Date("01:15:00");
+            let dat = Date.parse(startDate);
+            d.setMinutes(56);
+            let user = localStorage;
+
+            let serv = await api.post("/service/",{name: servico});
+            let s = serv.data;
+            console.log(serv);
+            await api.post("/reservation/",{date: startDate,time:hour, service: servico} );
+            alert("Reservation done!")
+            this.props.history.push("/cabeleireiros/salao");
+          } catch (err) {
+            console.log(err);
+          }
     }
-    handleChangeHour(event) {
-        this.setState({
-            value: event.target.value
-        });
-        alert('Hour: ' + event.target.value);
-    }
+    
     constructor(props) {
         super(props);
-    //console.log(this.props)
+        //console.log(defaultBcg)
         this.state = {
             slug: this.props.match.params.slug,
-            defaultBcg
+            defaultBcg,
+            servico: "",
+            hour: "",
+            cabeleireiro:"",
+            isActive: false
         };
-        this.handleChangeService = this.handleChangeService.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChangeHour = this.handleChangeHour.bind(this);
     }
 
     static contextType = CabeleireirosContext;
+
    // componentDidMount() {}
     render() {
         const { getCabeleireiro } = this.context;
@@ -81,6 +82,7 @@ export default class SingleCabeleireiro extends Component {
               descricao,
 
               imagens} = cabeleireiro;
+
         const [mainImg,...defaultImg] = imagens;
         return(
         <>
@@ -106,16 +108,13 @@ export default class SingleCabeleireiro extends Component {
           </section>
         <section className="cabeleireiro-extras">
         <h6>Serviços disponíveis</h6>
-        <h7>Aqui deve aparecer uma lista de serviços (corte masculino, coloração,...) com preços +- talvez, e
-            que dê para clicar, abrir um calendário com dias disponiveis a partir do de hoje,
-            escolher a data e hora da reserva </h7>
 
         </section>
         <div className="service_option">
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Pick your Service:
-                    <select value={this.state.value} onChange={this.handleChangeService}>
+                    <select name="servico" value={this.state.servico} onChange={e => this.setState({ servico: e.target.value })}>
                         <option value="cortes">Cortes - 5.90€</option>
                         <option value="manicure_pedicure">Manicure e Pedicure - 7.99€</option>
                         <option value="escovas">Escovas - 5.90€</option>
@@ -137,11 +136,11 @@ export default class SingleCabeleireiro extends Component {
                     {this.state.isActive ?
                         <FormControl component="fieldset">
                             <label>Select a available hour:
-                                <RadioGroup aria-label="gender" name="gender1" value={this.state.value}
-                                            onChange={this.handleChangeHour}>
-                                    <FormControlLabel value="hour1" control={<Radio/>} label="10h - 11h"/>
-                                    <FormControlLabel value="hour2" control={<Radio/>} label="14h - 15h30m"/>
-                                    <FormControlLabel value="hour3" control={<Radio/>} label="16h30m - 17h30m"/>
+                                <RadioGroup aria-label="time" name="hour" value={this.state.hour}
+                                            onChange={e => this.setState({ hour: e.target.value })}>
+                                    <FormControlLabel value="09:00:00" control={<Radio/>} label="09:00:00"/>
+                                    <FormControlLabel value="17:30:00" control={<Radio/>} label="17:30:00"/>
+                                    <FormControlLabel value="14:50:00" control={<Radio/>} label="14:50:00"/>
                                 </RadioGroup>
                             </label>
                         </FormControl>

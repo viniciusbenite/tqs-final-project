@@ -5,14 +5,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CabeleireirosProvider } from './context';
+import { ReservasProvider } from './contextRes';
 
 ReactDOM.render(
     <Router>
     <CabeleireirosProvider>
-        
+
+        <App />
+
+    </CabeleireirosProvider>
+        <ReservasProvider>
+
             <App />
-        
-        </CabeleireirosProvider>
+
+        </ReservasProvider>
     </Router>,
   document.getElementById('root'));
 

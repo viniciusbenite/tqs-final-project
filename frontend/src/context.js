@@ -22,10 +22,10 @@ class CabeleireirosProvider extends Component {
 
         var cabeleireiros=[];
         var barbeiros=[];
-        
+
+
         getSaloes().then(data => {
-            
-          
+
         cabeleireiros = this.formatDataCabeleireiros(data);
         barbeiros = this.formatDataBarbeiros(data);
 
@@ -39,10 +39,6 @@ class CabeleireirosProvider extends Component {
             
         });
         });
-        
-    
-
-        
     }
 
     formatDataCabeleireiros(items) {
@@ -88,10 +84,10 @@ class CabeleireirosProvider extends Component {
             if(type=="Barbeiro") tempItems.push(barbeiro); 
             
         });
-       
-       
-       
-      
+
+
+
+
         return tempItems
     }
 

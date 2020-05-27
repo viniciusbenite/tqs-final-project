@@ -9,6 +9,7 @@ import NavbarDono from "../components/NavbarDono";
 const Cabeleireiros = () => {
     return (
     <>
+    
     {localStorage.getItem("user_type")=="dono" ? <NavbarDono></NavbarDono>:<NavbarCliente></NavbarCliente> }
     <Hero hero="cabeleireirosHero">;
         <Banner title="Cabeleireiros">
