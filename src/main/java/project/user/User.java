@@ -38,11 +38,19 @@ public class User implements Serializable {
     private Set<Saloon> saloons;
 
 
-
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = get_SHA_512_SecurePassword(password, "1234");
+        this.password = password;
+        this.tipo="cliente";
+    }
+
+
+    public User(String name, String email, String password,String type) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.tipo = type;
     }
 
     // generate password

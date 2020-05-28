@@ -1,0 +1,5 @@
+project/unit/controllers/ScheduleControllerTest.class
+project/unit/controllers/ServiceControllerTest.class
+project/unit/controllers/UserControllerTest.class
+project/unit/controllers/ReservationControllerTest.class
+project/unit/controllers/SaloonControllerTest.class

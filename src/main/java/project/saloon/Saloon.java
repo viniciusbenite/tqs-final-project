@@ -1,5 +1,6 @@
 package project.saloon;
-
+import java.io.*; 
+import java.util.*; 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,10 +8,11 @@ import lombok.NoArgsConstructor;
 import project.schedule.Schedule;
 import project.service.Service;
 import project.user.User;
-
+import java.util.Arrays; 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.ArrayList; 
 
 @Entity
 @Data
@@ -46,9 +48,12 @@ public class Saloon implements Serializable {
 
 
     // Serviços do salão
-    @JsonIgnore
+    
     @OneToMany(mappedBy = "saloon")
+    @JsonIgnore
     private Set<Service> services;
+
+
 
 
     public Saloon(String name, String postalCode, String city,String country,String status, String type, String contact,String description,String image,String address,User owner) {
@@ -63,6 +68,8 @@ public class Saloon implements Serializable {
         this.address=address;
         this.owner=owner;
         this.image=image;
+        
+       
     }
 
     public Long getId() {
@@ -147,9 +154,13 @@ public class Saloon implements Serializable {
 
     public Set<Service> getServices() {
         return services;
+    
     }
 
     public void setServices(Set<Service> services) {
+        
         this.services = services;
     }
+
+
 }
