@@ -4,37 +4,33 @@ package project.unit.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.sql.Date;
-import java.sql.Time;
-
 import project.reservation.Reservation;
 import project.reservation.ReservationController;
+import project.reservation.ReservationRepository;
 import project.service.Service;
 import project.user.User;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import static project.constants.Paths.RESERVATION;
 
 @RunWith(SpringRunner.class)
@@ -46,6 +42,9 @@ public class ReservationControllerTest {
 
     @MockBean
     private ReservationController reservationController;
+
+    @MockBean
+    private ReservationRepository reservationRepository;
 
     @Test
     public void getAllReservations() throws Exception {
@@ -146,6 +145,19 @@ public class ReservationControllerTest {
                 .contentType(APPLICATION_JSON)
                 .content(asJsonString(reservation)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldReturn400WhenStringAsArgumentTest() throws Exception {
+        /*
+            the call must accepts only longs/int as argument
+        */
+        Reservation reservation = new Reservation();
+        reservation.setId(1L);
+
+        mockMvc.perform(get(RESERVATION + "/hello")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 
     // Auxiliar functions
