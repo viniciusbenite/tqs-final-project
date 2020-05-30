@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_app/MyReservations.dart';
 import 'package:mobile_app/models/Saloon.dart';
@@ -11,22 +13,24 @@ String selectedCategorie= "Todos";
   List<Saloon> saloons=[];
   List<Saloon> filtered=[];
 
+  User user;
+
 class Home extends StatefulWidget {
 
-  User user;
+  User userR;
   
-  Home({this.user});
+  Home({this.userR});
 
   @override
-  _Home createState() => _Home(user:this.user);
+  _Home createState() => _Home(userR:this.userR);
 }
 
 class _Home extends State<Home> {
 
-User user;
+User userR;
 String search;
  
-  _Home({this.user});
+  _Home({this.userR});
 
   List<String> categories = ["Todos","Cabeleireiro","Barbeiro"];
 
@@ -36,7 +40,9 @@ String search;
   void initState() {
 
     
-
+    setState(() {
+      user=this.userR;
+    });
     print("USER: "+user.email);
 
     getData().then((value) {
@@ -54,15 +60,16 @@ String search;
 
 
   Future<List> getData() async {
-    var url = "http://1f56444784dc.ngrok.io/saloon";
+    var url = "http://518c2d06fb72.ngrok.io/saloon";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
       Uri.encodeFull(url),
+      headers: {HttpHeaders.contentTypeHeader: "application/json; charset=utf-8"}
     );
 
     //print(response.body);
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     List<Saloon> saloons=[];
     for(var cada in body){
        Saloon saloon = Saloon.fromMap(cada);
@@ -89,7 +96,7 @@ String search;
               SizedBox(height: 10,),
               Text("Olá "+user.name+"! \n\nEncontre e reserve os serviços que procura", style: TextStyle(
                 color: Colors.black87.withOpacity(0.8),
-                fontSize: 25,
+                fontSize: 23,
                 fontWeight: FontWeight.w600
               ),),
               SizedBox(height: 40,),
@@ -142,7 +149,7 @@ String search;
                                     contentPadding: EdgeInsets.all(10.0),
                                     
                                     hintText: "Procurar",
-                                    fillColor: Colors.blue[50],
+                                    fillColor: Colors.deepOrange,
                                   ),
                                 ),
                               ),
@@ -152,7 +159,7 @@ String search;
               SizedBox(height: 30,),
               Text("Categorias", style: TextStyle(
                   color: Colors.black87.withOpacity(0.8),
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600
               ),),
               SizedBox(height: 20,),
@@ -181,7 +188,7 @@ String search;
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index){
                       return SpecialistTile(
-                        user:this.user,
+                        user:user,
                         saloon: filtered[index],
                         image: filtered[index].image,
                         speciality: filtered[index].name,
@@ -191,9 +198,9 @@ String search;
                     }),
               ),
               SizedBox(height: 20,),
-              Text("Minhas reservas", style: TextStyle(
+              Text("As suas reservas", style: TextStyle(
                   color: Colors.black87.withOpacity(0.8),
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600
               ),),
               SizedBox(height: 20,),
@@ -253,7 +260,7 @@ class _CategorieTileState extends State<CategorieTile> {
           borderRadius: BorderRadius.circular(30)
         ),
         child: Text(widget.categorie, style: TextStyle(
-          color: widget.isSelected ?  Color(0xffFC9535) : Color(0xffA1A1A1)
+          color: widget.isSelected ?  Colors.deepOrange : Color(0xffA1A1A1)
         ),),
       ),
     );
@@ -289,7 +296,7 @@ class SpecialistTile extends StatelessWidget {
           children: <Widget>[
             Text(speciality, style: TextStyle(
               color: Colors.black,
-              fontSize: 20
+              fontSize: 18
             ),),
             SizedBox(height: 7,),
             Text(city, style: TextStyle(
@@ -297,7 +304,7 @@ class SpecialistTile extends StatelessWidget {
               fontSize: 13
             ),),
             Padding(
-              padding: const EdgeInsets.only(top:5.0),
+              padding: const EdgeInsets.only(top:10.0),
               child: Container(
         width: 140.0,
         height: 160.0,
@@ -339,7 +346,7 @@ class DoctorsTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Veja aqui reservas efetuadas    ", style: TextStyle(
-                  color: Color(0xffFC9535),
+                  color: Colors.deepOrange,
                   fontSize: 15
                 ),),
                 
@@ -347,12 +354,12 @@ class DoctorsTile extends StatelessWidget {
             ),
          
             GestureDetector(
-              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => MyReservations())),
+              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => MyReservations(user:user))),
                           child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10,
                 vertical: 9),
                 decoration: BoxDecoration(
-                  color: Color(0xffFBB97C),
+                  color:Colors.deepOrange,
                   borderRadius: BorderRadius.circular(13)
                 ),
                 child: Text("Ver", style: TextStyle(

@@ -29,7 +29,7 @@ String password;
   }
 
   Future<List> getData() async {
-    var url = "http://1f56444784dc.ngrok.io/user";
+    var url = "http://518c2d06fb72.ngrok.io/user";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -62,20 +62,27 @@ String password;
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       decoration: InputDecoration(
+        focusColor: Colors.deepOrange,
+        fillColor: Colors.deepOrange,
+        hoverColor: Colors.deepOrange,
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0),),
       ),
     );
 
     final password = TextFormField(
       autofocus: false,
+      obscureText: true,
    onChanged: (value) {
                                     this.password = value;
                                   },
       decoration: InputDecoration(
         hintText: 'Password',
-     hoverColor: Colors.white,
+        
+     focusColor: Colors.deepOrange,
+        fillColor: Colors.deepOrange,
+        hoverColor: Colors.deepOrange,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -134,7 +141,7 @@ String password;
     getData().then((value) {
       for(var user in value){
         if(user.email==email && user.password==password) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:user)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Home(userR:user)));
           break;
         }
         else {
@@ -153,13 +160,13 @@ showError(BuildContext context) {
     // configura o  AlertDialog
     AlertDialog alerta = AlertDialog(
       title: Text(
-        "Por favor preencha todos os campos!",
+        "E-mail ou password incorretos!",
         style: TextStyle(
             color: Colors.black,
    
             fontFamily: 'Monteserrat',
             letterSpacing: 2,
-            fontSize: 20),
+            fontSize: 15),
       ),
     );
 

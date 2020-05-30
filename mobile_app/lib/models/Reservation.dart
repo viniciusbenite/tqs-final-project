@@ -25,7 +25,7 @@ class Reservation{
     date=data['date'];
     time=data['time'];
     user=User.fromMap(data['users']);
-    service=Service.fromMap(data['service']);
+    service=Service.fromMap(data['services']);
   
   }
 

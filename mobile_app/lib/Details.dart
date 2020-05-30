@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_app/models/Saloon.dart';
 import 'package:mobile_app/models/Service.dart';
@@ -49,15 +51,16 @@ class _DetailsState extends State<Details> {
   }
 
 Future<List> getData() async {
-    var url = "http://1f56444784dc.ngrok.io/service";
+    var url = "http://518c2d06fb72.ngrok.io/service";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
       Uri.encodeFull(url),
+      
     );
 
     //print(response.body);
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     List<Service> services=[];
     for(var cada in body){
        Service service = Service.fromMap(cada);
@@ -102,15 +105,17 @@ Future<List> getData() async {
                     width: 20,
                   ),
                   Container(
-                   
+                    width:130,
                     height: 220,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          saloon.name,
-                          style: TextStyle(fontSize: 25),
+                        Flexible(
+                                                  child: Text(
+                            saloon.name,
+                            style: TextStyle(fontSize: 25),
+                          ),
                         ),
                         SizedBox(
                     height: 20,
@@ -119,6 +124,16 @@ Future<List> getData() async {
                          saloon.city,
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
+                        SizedBox(
+                height: 20,
+              ),
+     Flexible(
+                                child: Text(
+                    saloon.address,
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                  ),
+                ),
+              
                         SizedBox(
                           height: 40,
                         ),
@@ -129,21 +144,18 @@ Future<List> getData() async {
                 ],
               ),
               SizedBox(
-                height: 26,
+                height: 30,
               ),
               Text(
-                "Informação",
-                style: TextStyle(fontSize: 20),
+                "Descrição",
+                style: TextStyle(
+                    color: Color(0xff242424),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
               ),
-               SizedBox(
-                height: 16,
-              ),
-              Text(
-                saloon.address,
-                style: TextStyle(color: Colors.grey, fontSize: 16),
-              ),
+               
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
                 saloon.description,
@@ -224,10 +236,16 @@ Future<List> getData() async {
                                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesBook(service:services[index],user:user))),
                                                                 child: Container(
                                         width: MediaQuery.of(context).size.width/1.4,
-                                        child: Text("->  "+
-                                          services[index].name+"     "+services[index].price.toString()+" € ",
-                                          style: TextStyle(color: Colors.white,
-                                          fontSize: 17),
+                                        child: Row(
+                                                                                  children:[ Padding(
+                                                                                    padding: const EdgeInsets.only(left:30.0,right: 15.0),
+                                                                                    child: Icon(Icons.touch_app,color:Colors.deepOrange),
+                                                                                  ),
+                                                                                    Text(
+                                            services[index].name,
+                                            style: TextStyle(color: Colors.white,
+                                            fontSize: 17),
+                                          ),]
                                         ),
                                       ),
                                     )
