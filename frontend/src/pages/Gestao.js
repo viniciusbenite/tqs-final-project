@@ -56,8 +56,20 @@ export default class Gestao extends Component{
 			this.setState({
 				cabeleireiros: this.state.cabeleireiros.filter(cabeleireiro => cabeleireiro.id !== id)
 			});
+			api.get('/schedule/').then(r =>{
+				let datar = r.data;
+				for (const i in datar) {
+					if (datar[i].service.saloon.id == parseInt(id)) {
+						api.delete('/schedule/'+datar[i].id).then(res => {
+							api.delete('/service/'+datar[i].service.id).then(resser => {
+								api.delete('/saloon/'+id).then(ressal => {
+								});
+							});
+						});
 
-			//api.delete('/saloon/'+id).then(r => {console.log(r.data)});
+					}
+				}
+			});
 		}
 
 		const updateCabeleireiro = (id, updatedCabeleireiro) => {
