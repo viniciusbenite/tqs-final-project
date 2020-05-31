@@ -26,11 +26,11 @@ public class Reservation implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name="users_id")
+    @JoinColumn(name="users_id", nullable=false)
     private User users;
 
     @ManyToOne
-    @JoinColumn(name="service_id")
+    @JoinColumn(name="service_id", nullable=false)
     private Service services;
 
 
