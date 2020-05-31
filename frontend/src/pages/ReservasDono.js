@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -7,22 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import NavbarDono from "../components/NavbarDono";
-
-function ReservasDono() {
-  
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Reservas © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import api from "../services/api";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -64,23 +50,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const cards = [1, 2, 3, 4];
-const isDone=[true,false,false,false]
+const isDone=[true,false,false,false];
+const classes = useStyles;
 
-export default function Album() {
-  const classes = useStyles();
-  
+export default class Album extends Component{
+
+  state={
+    reservas: [],
+  };
+
+  componentDidMount() {
+    this.GetReservations();
+  }
+  GetReservations() {
+    api.get("/reservation").then(res => {
+      let dataRes = res.data;
+      for (const n in dataRes) {
+        if(dataRes[n].services.saloon.owner.email == localStorage.getItem("user_email")){
+          this.setState(prevState =>({
+            reservas: [...prevState.reservas, dataRes[n]]
+          }))
+        }
+      }
+
+    });
+  }
+
+  render() {
+
   return (
     <React.Fragment>
          <NavbarDono></NavbarDono>
       <CssBaseline />
-     
+
       <main>
      
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h5" variant="h4" align="center" color="textPrimary" gutterBottom>
-             As reservas efetuadas para o meu salão:
+            </Typography>
+            <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
+             A reservas efetuadas aos meus salões:
             </Typography>
             <div className={classes.heroButtons}>
               
@@ -90,10 +101,10 @@ export default function Album() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {this.state.reservas.map((e,key) => (
+              <Grid item key={key} xs={12} sm={6} md={3}>
               
-                <Card className= {isDone[cards.indexOf(card)]?classes.cardDone:classes.card}>
+                <Card className= {isDone[cards.indexOf(key)]?classes.cardDone:classes.card}>
                  
                   <CardMedia
                   component="img"
@@ -107,16 +118,19 @@ export default function Album() {
                   
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Cabeleireiro 1 - Lisboa
+                      {e.service.saloon.name} - {e.service.saloon.city}
                     </Typography>
                     <Typography>
-                      25 de Abril de 2020
+                        Data: {e.date}
                     </Typography>
                     <Typography>
-                      13h - 14h  
+                        Hora: {e.time}
                     </Typography>
                     <Typography>
-                     Serviço: Corte de cabelo
+                     Serviço: {e.service.name}
+                    </Typography>
+                    <Typography>
+                      Cliente: {e.users.name}
                     </Typography>
                   
                   </CardContent>
@@ -131,5 +145,5 @@ export default function Album() {
       </main>
       
     </React.Fragment>
-  );
+  )};
 }

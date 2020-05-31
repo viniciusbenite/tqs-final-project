@@ -3,20 +3,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function Barbeiro({ barbeiro }) {
-    const { nome, slug, imagens, cidade } = barbeiro;
-
-    var Url=imagens[0];
-    console.log(Url);
+    const {id, nome, cidade} = barbeiro;
     return <article className="cabeleireiro">
 
         <div className="img-container">
-            <img src={Url} 
+            <img src={require('../images/barbeiros.jpg')}
                 alt="single cabeleireiro" />
             <div className="price-top">
             <h6>{cidade}</h6>
             
             </div>
-            <Link to={`/barbeiros/${slug}`}
+            <Link to={`/barbeiros/${id}`}
                 className="btn-primary cabeleireiro-link">
                 Ver 
                 </Link>
@@ -29,9 +26,6 @@ export default function Barbeiro({ barbeiro }) {
 Barbeiro.propTypes = {
     barbeiro: PropTypes.shape({
         nome: PropTypes.string.isRequired,
-        slug: PropTypes.string.isRequired,
-        imagens: PropTypes.arrayOf(PropTypes.string)
-            .isRequired,
-        cidade:PropTypes.string.isRequired
+        cidade:PropTypes.string.isRequired,
     })
 }

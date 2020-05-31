@@ -21,16 +21,16 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;  // dia do mês ( ex: 20/3/ - dia 20 do mes 3 (Março))
+    private String date;  // dia do mês ( ex: 20/3/ - dia 20 do mes 3 (Março))
     private String time;  // horas da marcação ( 16:30:00 )
 
 
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    //@ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="users_id")
     private User users;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    //@ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="service_id")
     private Service services;
 
@@ -59,11 +59,11 @@ public class Reservation implements Serializable {
         return id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

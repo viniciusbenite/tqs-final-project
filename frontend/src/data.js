@@ -6,7 +6,6 @@ export default function getSaloes()  {
   return fetch('http://localhost:3000/saloon')
         .then((response) => { 
             return response.json().then((data) => {
-               
                 return data;
             }).catch((err) => {
                 console.log(err);

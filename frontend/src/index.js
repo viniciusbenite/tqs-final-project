@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CabeleireirosProvider } from './context';
-import { ReservasProvider } from './contextRes';
 
 ReactDOM.render(
     <Router>
@@ -14,11 +13,6 @@ ReactDOM.render(
         <App />
 
     </CabeleireirosProvider>
-        <ReservasProvider>
-
-            <App />
-
-        </ReservasProvider>
     </Router>,
   document.getElementById('root'));
 

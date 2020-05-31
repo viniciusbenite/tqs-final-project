@@ -48,14 +48,13 @@ class CabeleireirosProvider extends Component {
         items.map(item => {
             let id = item.id;
             let nome = item.name;
-            let slug = "salao";
             let cidade = item.city;
             let descricao=item.description;
             let morada=item.address;
             let imagens = [item.image];
             let type = item.type;
 
-            let cabeleireiro = {nome,morada,descricao,slug,cidade,type,imagens,id }
+            let cabeleireiro = {nome,morada,descricao,cidade,type,imagens,id }
             if(type=="Cabeleireiro") tempItems.push(cabeleireiro); 
             
         });
@@ -73,14 +72,13 @@ class CabeleireirosProvider extends Component {
         items.map(item => {
             let id = item.id;
             let nome = item.name;
-            let slug = "salao";
             let cidade = item.city;
             let descricao=item.description;
             let morada=item.address;
             let imagens = [item.image];
             let type = item.type;
 
-            let barbeiro = {nome,morada,descricao,slug,cidade,type,imagens,id }
+            let barbeiro = {nome,morada,descricao,cidade,type,imagens,id }
             if(type=="Barbeiro") tempItems.push(barbeiro); 
             
         });
@@ -92,16 +90,16 @@ class CabeleireirosProvider extends Component {
     }
 
 
-    getCabeleireiro = (slug) => {
+    getCabeleireiro = (id) => {
         let tempCabeleireiros = [...this.state.cabeleireiros];
-        const cabeleireiro = tempCabeleireiros.find(cabeleireiro => cabeleireiro.slug === slug);
+        const cabeleireiro = tempCabeleireiros.find(cabeleireiro => cabeleireiro.id === id);
         return cabeleireiro;
     };
 
 
-    getBarbeiro = (slug) => {
+    getBarbeiro = (id) => {
         let tempBarbeiros = [...this.state.barbeiros];
-        const barbeiro = tempBarbeiros.find(barbeiro => barbeiro.slug === slug);
+        const barbeiro = tempBarbeiros.find(barbeiro => barbeiro.id === id);
         return barbeiro;
     };
 
