@@ -19,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "service")
+
 public class Service implements Serializable {
 
     @Id
@@ -32,7 +33,7 @@ public class Service implements Serializable {
 
 
     // Salão que oferece o serviço
-    @ManyToOne
+    
     @JoinColumn(name="saloon_id")
     private Saloon saloon;
 
@@ -44,8 +45,21 @@ public class Service implements Serializable {
 
     // reservas do serviço
     @JsonIgnore
-    @OneToMany(mappedBy = "services")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "services")
     private Set<Reservation> reservation;
+
+
+
+
+    public Service(String name,Double price,String description,String available, Set<Schedule> schedules, Set<Reservation> reservation) {
+        this.name=name;
+        this.price=price;
+        this.description=description;
+        this.available=available;
+        this.schedules=schedules;
+        this.reservation=reservation;
+
+    }
 
     public Long getId() {
         return id;

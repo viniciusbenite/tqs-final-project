@@ -50,8 +50,6 @@ public class ReservationController {
                     reservation.setDate(newReservation.getDate());
                     reservation.setTime(newReservation.getTime());
                     reservation.setId(newReservation.getId());
-                    reservation.setService(newReservation.getService());
-                    reservation.setUser(newReservation.getUser());
                     return reservationRepository.save(reservation);
                 })
                 .orElseGet(() -> {

@@ -21,8 +21,8 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;  // dia do mês ( ex: 20/3/ - dia 20 do mes 3 (Março))
-    private Time time;  // horas da marcação ( 16:30:00 )
+    private String date;  // dia do mês ( ex: 20/3/ - dia 20 do mes 3 (Março))
+    private String time;  // horas da marcação ( 16:30:00 )
 
 
     @ManyToOne
@@ -33,6 +33,13 @@ public class Reservation implements Serializable {
     @JoinColumn(name="service_id", nullable=false)
     private Service services;
 
+
+    public Reservation(String date,String time,User users,Service services) {
+        this.date=date;
+        this.time=time;
+        this.users=users;
+        this.services=services;
+    }
 
     public void setUser(User user) {
         this.users = user;
@@ -58,19 +65,19 @@ public class Reservation implements Serializable {
         return id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
