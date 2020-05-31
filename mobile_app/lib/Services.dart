@@ -54,7 +54,7 @@ User user;
 
 
 Future<List> getData() async {
-    var url = "http://518c2d06fb72.ngrok.io/schedule";
+    var url = "http://10.0.2.2:8080/schedule";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -76,7 +76,7 @@ Future<List> getData() async {
 Future<http.Response> postData(Reservation reservation) async {
   
   return await http.post(
-    'http://518c2d06fb72.ngrok.io/reservation/',
+    'http://10.0.2.2:8080/reservation/',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -154,6 +154,7 @@ Future<http.Response> postData(Reservation reservation) async {
                 style: TextStyle(
                     letterSpacing: 2.0,
                     fontFamily: 'Nunito',
+                    
                     fontSize: 20.0,
                     color: Colors.black.withOpacity(0.6),
                     fontWeight: FontWeight.bold),
@@ -176,12 +177,13 @@ Future<http.Response> postData(Reservation reservation) async {
                         Padding(
                           padding: _dateTime == null ? const EdgeInsets.only(left:40.0): const EdgeInsets.only(left:7.0),
                           child: IconButton(
+                            key: Key('date_picker'),
                             icon: Icon(Icons.calendar_today,size:45,color:Colors.deepOrange),
                     
                             onPressed: () {
                               showDatePicker(
                                 context: context,
-                                firstDate: DateTime(2020,5,29),
+                                firstDate: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day),
                                 initialDate:
                                     _dateTime == null ? DateTime.now() : _dateTime,
                                 
@@ -241,7 +243,7 @@ Future<http.Response> postData(Reservation reservation) async {
                     padding: const EdgeInsets.all(20.0),
                     child: Padding(
                       padding: const EdgeInsets.all(0.0),
-                      child: getTime(horas[index].startTime,horas[index].endTime),
+                      child: getTime(horas[index].startTime,horas[index].endTime,index),
                     ),
                   );
                               })
@@ -253,6 +255,7 @@ Future<http.Response> postData(Reservation reservation) async {
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
               child: InkWell(
+                key: Key('reserve_button'),
                 onTap: () async {
                   if(selectedTime!="" && _dateTime!=null) {
                   Reservation reservation= new Reservation.post(_dateTime.toString().split(' ')[0],selectedTime,this.user,this.service);
@@ -314,7 +317,7 @@ Future<http.Response> postData(Reservation reservation) async {
     });
   }
 
-  Widget getTime(time,timeFinal) {
+  Widget getTime(time,timeFinal,index) {
   String inicialTime=time.toString();
   inicialTime=inicialTime.substring(0, inicialTime.length - 3);
   String finalTime=timeFinal.toString();
@@ -329,6 +332,7 @@ Future<http.Response> postData(Reservation reservation) async {
       height: 50.0,
       width: 75.0,
       child: InkWell(
+        key: (index==0) ? Key('time_picker'):null,
         onTap: () {
           selectTime(time,timeFinal);
         },

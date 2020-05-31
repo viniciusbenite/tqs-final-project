@@ -26,7 +26,7 @@ class _MyReservationsState extends State<MyReservations> {
   _MyReservationsState({this.user});
 
   Future<List> getData() async {
-    var url = "http://518c2d06fb72.ngrok.io/reservation";
+    var url = "http://10.0.2.2:8080/reservation";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -63,7 +63,7 @@ class _MyReservationsState extends State<MyReservations> {
       DateTime first= new DateTime(yearF,monthF,dayF);
       String proximaF=value[0].date;
 
-      print(first);
+     
 
       for(var reserva in value.sublist(1)) {
        
@@ -119,6 +119,7 @@ class _MyReservationsState extends State<MyReservations> {
         backgroundColor: Colors.transparent,
         
         leading: IconButton(
+          key: Key('back_button'),
           onPressed: () {Navigator.pop(context);},
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
@@ -164,7 +165,7 @@ class _MyReservationsState extends State<MyReservations> {
                 color: Colors.white,
                 fontSize: 23,
                 fontWeight: FontWeight.w600
-              ),),
+              ),key: Key('reservations_text'),),
                     SizedBox(
                       height: 30,
                     ),
@@ -208,20 +209,25 @@ class _MyReservationsState extends State<MyReservations> {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 23.0),
-                              child: RichText(
-                                text: TextSpan(
+                              
+                                
+                                child: Row(
+                                  
                                   children: [
-                                    TextSpan(
-                                      text: reservations.length.toString(),
+                                    Text(
+                                      
+                                       reservations.length.toString(),
+                                      key: Key('reservations_number'),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline
                                           .apply(
                                               color: Colors.deepOrange,
                                               fontWeightDelta: 2),
+                                              
                                     ),
-                                    TextSpan(
-                                      text: " reserva(s) efetuadas ",
+                                    Text(
+                                       " reserva(s) efetuadas ",
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2
@@ -229,7 +235,7 @@ class _MyReservationsState extends State<MyReservations> {
                                     )
                                   ],
                                 ),
-                              ),
+                              
                             ),
                             SizedBox(
                               height: 15.0,
@@ -248,11 +254,12 @@ class _MyReservationsState extends State<MyReservations> {
                 color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.w600
-              ),),
+              ),key: Key('next_reservation'),),
                                   ),
                                   Spacer(),
                                   Text(
                                     proxima.substring(8,10),
+                                    key: Key('proximo_dia'),
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline
@@ -449,9 +456,9 @@ class _MyReservationsState extends State<MyReservations> {
 
   _delete(Reservation r) async {
    
-    var url = "http://518c2d06fb72.ngrok.io/reservation/"+r.id.toString();
+    var url = "http://10.0.2.2:8080/reservation/"+r.id.toString();
         
-    http.Response response = await http.delete(
+    await http.delete(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
       Uri.encodeFull(url),
     );

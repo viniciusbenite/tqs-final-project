@@ -43,8 +43,7 @@ String search;
     setState(() {
       user=this.userR;
     });
-    print("USER: "+user.email);
-
+  
     getData().then((value) {
       setState(() {
         saloons=value;
@@ -60,7 +59,7 @@ String search;
 
 
   Future<List> getData() async {
-    var url = "http://518c2d06fb72.ngrok.io/saloon";
+    var url = "http://10.0.2.2:8080/saloon";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -87,6 +86,7 @@ String search;
           child: Container()// Populate the Drawer in the next step.
       ),
       body: SingleChildScrollView(
+        key: Key('Scroll'),
         child: Container(
           color: Colors.white,
           padding: EdgeInsets.symmetric(vertical: 40,horizontal: 24),
@@ -94,11 +94,23 @@ String search;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 10,),
-              Text("Olá "+user.name+"! \n\nEncontre e reserve os serviços que procura", style: TextStyle(
-                color: Colors.black87.withOpacity(0.8),
-                fontSize: 23,
-                fontWeight: FontWeight.w600
-              ),),
+              Column(
+                              children:[ 
+                                Padding(
+                                  padding: const EdgeInsets.only(right:210.0),
+                                  child: Text("Olá "+user.name+"!", style: TextStyle(
+                  color: Colors.black87.withOpacity(0.8),
+                  fontSize: 23,
+                  fontWeight: FontWeight.w600
+                ),),
+                                ),
+                Text("\n\nEncontre e reserve os serviços que procura", style: TextStyle(
+                  color: Colors.black87.withOpacity(0.8),
+                  fontSize: 23,
+                  fontWeight: FontWeight.w600
+                ),key: Key('welcome_text'),),
+                              ]
+              ),
               SizedBox(height: 40,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24),
@@ -187,13 +199,14 @@ String search;
                     physics: ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index){
-                      return SpecialistTile(
+                      return SaloonTile(
                         user:user,
                         saloon: filtered[index],
                         image: filtered[index].image,
                         speciality: filtered[index].name,
                         city: filtered[index].city,
                         backColor: Colors.grey[200],
+                        index:index,
                       );
                     }),
               ),
@@ -204,7 +217,7 @@ String search;
                   fontWeight: FontWeight.w600
               ),),
               SizedBox(height: 20,),
-              DoctorsTile()
+              ReservasTile()
             ],
           ),
         ),
@@ -267,7 +280,7 @@ class _CategorieTileState extends State<CategorieTile> {
   }
 }
 
-class SpecialistTile extends StatelessWidget {
+class SaloonTile extends StatelessWidget {
 
   final String image;
   final String speciality;
@@ -275,13 +288,15 @@ class SpecialistTile extends StatelessWidget {
   final Color backColor;
   final Saloon saloon;
   final User user;
+  final int index;
 
-  SpecialistTile({@required this.user,@required this.saloon,@required this.image,@required this.speciality
-    ,@required this.city, @required this.backColor});
+  SaloonTile({@required this.user,@required this.saloon,@required this.image,@required this.speciality
+    ,@required this.city, @required this.backColor, @required this.index});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: (index==0) ? Key('saloon_container'):null,
       onTap:() =>  Navigator.push(context, MaterialPageRoute(builder: (context) => Details(saloon:this.saloon,user:this.user))),
           child: Container(
         width: 150,
@@ -324,7 +339,7 @@ class SpecialistTile extends StatelessWidget {
   }
 }
 
-class DoctorsTile extends StatelessWidget {
+class ReservasTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -354,6 +369,7 @@ class DoctorsTile extends StatelessWidget {
             ),
          
             GestureDetector(
+              key: Key('reservations_button'),
               onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => MyReservations(user:user))),
                           child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10,

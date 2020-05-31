@@ -26,12 +26,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: ^0.12.1
+  google_fonts: ^0.3.10
 
 dev_dependencies:
-  flutter_test:
+  flutter_driver:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter  
+  test: any
 
 
 # For information on the generic Dart part of this file, see the
@@ -48,6 +48,11 @@ flutter:
   assets:
     - assets/images/
 
+
+  fonts: 
+    - family: Cinzel
+      fonts:
+        - asset: google-fonts/Cinzel-Bold.ttf
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

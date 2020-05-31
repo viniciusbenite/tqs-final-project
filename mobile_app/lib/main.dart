@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('pt', 'PT'), // include country code too
       ],
-      title: 'Flutter Demo',
+      title: 'TQS APP PÊLO',
       theme: ThemeData(
        
         primarySwatch: Colors.blue,

@@ -51,7 +51,7 @@ class _DetailsState extends State<Details> {
   }
 
 Future<List> getData() async {
-    var url = "http://518c2d06fb72.ngrok.io/service";
+    var url = "http://10.0.2.2:8080/service";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -196,6 +196,7 @@ Future<List> getData() async {
               ),
               Text(
                 "Serviços disponíveis",
+                key: Key('services_text'),
                 style: TextStyle(
                     color: Color(0xff242424),
                     fontSize: 20,
@@ -233,6 +234,7 @@ Future<List> getData() async {
                                  
                                    
                                     GestureDetector(
+                                      key: Key('service_container'),
                                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesBook(service:services[index],user:user))),
                                                                 child: Container(
                                         width: MediaQuery.of(context).size.width/1.4,

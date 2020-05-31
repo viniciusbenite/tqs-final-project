@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Login extends StatefulWidget {
-  static String tag = 'login-page';
+  
   @override
   _Login createState() => new _Login();
 }
@@ -17,11 +17,13 @@ class _Login extends State<Login> {
 
 String email;
 String password;
+bool loaded;
 
 
 
 @override
   void initState() {
+    saveData().then((dynamic)=>setState(()=>loaded=true));
     super.initState();
     email="";
     password="";
@@ -29,14 +31,13 @@ String password;
   }
 
   Future<List> getData() async {
-    var url = "http://518c2d06fb72.ngrok.io/user";
+    var url = "http://10.0.2.2:8080/user";
         
     http.Response response = await http.get(
-      //Uri.encodeFull removes all the dashes or extra characters present in our Uri
+      
       Uri.encodeFull(url),
     );
 
-    //print(response.body);
     final body = json.decode(response.body);
     List<User> users=[];
     for(var cada in body){
@@ -47,15 +48,29 @@ String password;
     
   }
 
+// WE SAVE DATA FOR THE MOBILE APP HERE (USER AND SALOONS)
+
+   saveData() async {
+
+    var url = "http://10.0.2.2:8080/saloon/save";
+        
+    await http.get(
+      
+      Uri.encodeFull(url),
+    );
+    
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
       tag: 'hero',
-      child:Text("")
+      child:Text("PÊLO",style:TextStyle(fontSize: 50,fontFamily: 'Cinzel'))
     );
 
     final email = TextFormField(
+      key: Key('email_input'),
       onChanged: (value) {
                                     this.email = value;
                                   },
@@ -63,6 +78,7 @@ String password;
       autofocus: false,
       decoration: InputDecoration(
         focusColor: Colors.deepOrange,
+        
         fillColor: Colors.deepOrange,
         hoverColor: Colors.deepOrange,
         hintText: 'Email',
@@ -74,6 +90,7 @@ String password;
     final password = TextFormField(
       autofocus: false,
       obscureText: true,
+      key: Key('password_input'),
    onChanged: (value) {
                                     this.password = value;
                                   },
@@ -91,6 +108,7 @@ String password;
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: RaisedButton(
+        key: Key('entrar_button'),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -104,7 +122,7 @@ String password;
     );
 
    
-
+if(loaded==true){
     return Container(
       decoration:
               BoxDecoration(
@@ -114,13 +132,16 @@ String password;
           alignment: Alignment.topCenter,)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: ListView(
+        body: 
+          ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            padding: EdgeInsets.only(left: 24.0, right: 24.0,top:150),
             children: <Widget>[
               // Text('happy birthday login),
-              logo,
+              Padding(
+                padding: const EdgeInsets.only(bottom:30.0),
+                child: Center(child: logo),
+              ),
               SizedBox(height: 48.0),
               email,
               SizedBox(height: 8.0),
@@ -131,13 +152,27 @@ String password;
             ],
           ),
         ),
-      ),
+      
+    );
+}
+else return Container(
+      decoration:
+              BoxDecoration(
+              image: DecorationImage(
+          image: AssetImage("assets/images/login.jpeg"),
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+       
+        ),
+      
     );
   }
 
 
   autenticar(String email,String password,BuildContext context){
-    print("verificando");
+  
     getData().then((value) {
       for(var user in value){
         if(user.email==email && user.password==password) {
@@ -161,6 +196,7 @@ showError(BuildContext context) {
     AlertDialog alerta = AlertDialog(
       title: Text(
         "E-mail ou password incorretos!",
+        key: Key('incorrect_credentials'),
         style: TextStyle(
             color: Colors.black,
    
