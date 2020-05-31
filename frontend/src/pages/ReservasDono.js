@@ -27,12 +27,14 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     height: '100%',
+    
     display: 'flex',
     opacity: 1,
     flexDirection: 'column',
   },
   cardDone: {
     height: '100%',
+    
     display: 'flex',
     opacity: 0.4,
     flexDirection: 'column',
@@ -44,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
+    
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
@@ -91,7 +94,7 @@ export default class Album extends Component{
             <Typography component="h5" variant="h4" align="center" color="textPrimary" gutterBottom>
             </Typography>
             <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
-             A reservas efetuadas aos meus salões:
+             A reservas efetuadas nos meus salões:
             </Typography>
             <div className={classes.heroButtons}>
               
@@ -117,8 +120,8 @@ export default class Album extends Component{
                   />
                   
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {e.service.saloon.name} - {e.service.saloon.city}
+                    <Typography gutterBottom variant="h6" component="h6">
+                      {e.service.saloon.name} 
                     </Typography>
                     <Typography>
                         Data: {e.date}

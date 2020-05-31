@@ -77,77 +77,77 @@ const AddCabeleireiroForm = props => {
 						});
 				})
 				setCabeleireiro(initialFormState)
-				alert("Saloon added!")
+				alert("Salão Adicionado!")
 			}}
 		>
 			<label>Nome</label>
 			<input type="text" name="name" value={cabeleireiro.name} onChange={handleInputChange} />
-			<label>Postal Code</label>
+			<label>Código Postal</label>
 			<input type="text" name="postalCode" value={cabeleireiro.postalCode} onChange={handleInputChange} />
 			<label>Cidade</label>
 			<input type="text" name="city" value={cabeleireiro.city} onChange={handleInputChange} />
-			<label>Country</label>
+			<label>País</label>
 			<input type="text" name="country" value={cabeleireiro.country} onChange={handleInputChange} />
-			<label>Status</label>
+			<label>Estado</label>
 			<select name={"status"} onChange={handleInputChange}>
 				<option name="Aberto" value="Aberto">Aberto</option>
 				<option name="Fechado" value="Fechado">Fechado</option>
 			</select>
-			<label>Type</label>
+			<label>Tipo</label>
 			<select  name={"type"} onChange={handleInputChange}>
 				<option name="Cabeleireiro" value="Cabeleireiro">Cabeleireiro</option>
 				<option name="Barbeiro" value="Barbeiro">Barbeiro</option>
 			</select>
-			<label>Contact</label>
+			<label>Contacto</label>
 			<input type="text" name="contact" value={cabeleireiro.contact} onChange={handleInputChange} />
-			<label>Description</label>
+			<label>Descrição</label>
 			<input type="text" name="description" value={cabeleireiro.description} onChange={handleInputChange} />
-			<label>Address</label>
+			<label>Endereço</label>
 			<input type="text" name="address" value={cabeleireiro.address} onChange={handleInputChange} />
-			<label>Pick your services</label>
+			<label>Serviços disponíveis</label>
 			<FormGroup>
 				<FormControlLabel
 					control={<Checkbox checked={services.cortes} onChange={handleToggle} name="cortes" />}
 					label="Cortes"
 				/>
-				<input type="text" name="cortes" value={hours.cortes} onChange={handleHourChange}  placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)"/>
+				<input type="text" name="cortes" value={hours.cortes} onChange={handleHourChange}  placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)"/>
 				<FormControlLabel
 					control={<Checkbox checked={services.manicure_pedicure} onChange={handleToggle} name="manicure_pedicure" />}
 					label="Manicure Pedicure"
 				/>
-				<input type="text" name="manicure_pedicure" value={hours.manicure_pedicure} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="manicure_pedicure" value={hours.manicure_pedicure} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 				<FormControlLabel
 					control={<Checkbox checked={services.escovas} onChange={handleToggle} name="escovas" />}
 					label="Escovas"
 				/>
-				<input type="text" name="escovas" value={hours.escovas} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="escovas" value={hours.escovas} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 				<FormControlLabel
 					control={<Checkbox checked={services.tratamento_capilar} onChange={handleToggle} name="tratamento_capilar" />}
 					label="Tratamento Capilar"
 				/>
-				<input type="text" name="tratamento_capilar" value={hours.tratamento_capilar} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="tratamento_capilar" value={hours.tratamento_capilar} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 				<FormControlLabel
 					control={<Checkbox checked={services.serviços_especiais} onChange={handleToggle} name="serviços_especiais" />}
 					label="Serviços Especiais"
 				/>
-				<input type="text" name="serviços_especiais" value={hours.serviços_especiais} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="serviços_especiais" value={hours.serviços_especiais} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 				<FormControlLabel
 					control={<Checkbox checked={services.depilacao} onChange={handleToggle} name="depilacao" />}
 					label="Depilação"
 				/>
-				<input type="text" name="depilacao" value={hours.depilacao} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="depilacao" value={hours.depilacao} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00))" />
 				<FormControlLabel
 					control={<Checkbox checked={services.maquilhagem} onChange={handleToggle} name="maquilhagem" />}
 					label="Maquilhagem"
 				/>
-				<input type="text" name="maquilhagem" value={hours.maquilhagem} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="maquilhagem" value={hours.maquilhagem} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 				<FormControlLabel
 					control={<Checkbox checked={services.quimicas} onChange={handleToggle} name="quimicas" />}
 					label="Quimicas"
 				/>
-				<input type="text" name="quimicas" value={hours.quimicas} onChange={handleHourChange} placeholder="Type your available schedules(09:00:00,12:30:00 P ex.)" />
+				<input type="text" name="quimicas" value={hours.quimicas} onChange={handleHourChange} placeholder="Introduza horários disponíveis ( p.e. 09:00:00,12:30:00)" />
 			</FormGroup>
-			<button>Adicionar novo cabeleireiro</button>
+			<button>Adicionar novo salão</button>
 		</form>
 	)
 }

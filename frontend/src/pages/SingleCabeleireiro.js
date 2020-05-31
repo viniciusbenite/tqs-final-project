@@ -121,7 +121,7 @@ export default class SingleCabeleireiro extends Component {
                 })
 
 
-                alert("Reservation done!")
+                alert("Reserva efetuada com sucesso!")
                 await api.get("/schedule/",).then(rHor =>{
                     let datarHor = rHor.data;
                     for (const n in datarHor) {
@@ -173,7 +173,7 @@ export default class SingleCabeleireiro extends Component {
                 <Link to='/cabeleireiros' className="btn-primary">back to cabeleireiros</Link>
                 </div>
         }
-        const {nome, cidade, descricao, imagens} = cabeleireiro;
+        const {nome, cidade, descricao, imagens,morada,contacto} = cabeleireiro;
         //this.setState({cabeleireiroName: nome});
         const [mainImg,...defaultImg] = imagens;
         return(
@@ -193,19 +193,22 @@ export default class SingleCabeleireiro extends Component {
                 <article className="desc">
                 <h3>detalhes</h3>
                 <p>{descricao}</p>
+                <p>Contacto Telefónico: {contacto}</p>
+                <p>{morada}</p>
+                <p>{cidade}</p>
                 </article>
                     <article className="info">
                     </article>
                 </div>
           </section>
         <section className="cabeleireiro-extras">
-        <h6>Serviços disponíveis</h6>
+        <h3>Serviços disponíveis</h3>
 
         </section>
         <div className="service_option">
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Pick your Service:
+                    Escolha o Serviço:
                     <select name="servico" value={this.state.servico} onChange={this.handleChangeService}>
                         {this.state.servicosName.map((e, key) => {
                             return <option key={key} value={e.value}>{e.label}</option>;
@@ -213,7 +216,7 @@ export default class SingleCabeleireiro extends Component {
                     </select>
                 </label>
                 <label>
-                    Choose an available day:
+                    Escolha o Dia:
                     <DatePicker className="calendar"
                                 selected={this.state.startDate}
                                 onChange={this.handleChangeDate}
@@ -225,7 +228,7 @@ export default class SingleCabeleireiro extends Component {
                 <div>
                     {this.state.isActive ?
                         <FormControl component="fieldset">
-                            <label>Select a available hour:
+                            <label>Escolha a Hora:
                                 <RadioGroup aria-label="time" name="hour" value={this.state.hour}
                                             onChange={e => this.setState({ hour: e.target.value })}>
                                     {this.state.horarios.map((e, key) => {
@@ -236,7 +239,9 @@ export default class SingleCabeleireiro extends Component {
                         </FormControl>
                         : null}
                 </div>
-                <input type="submit" value="Submit" />
+                <div className="reservar">
+                <input type="submit" value="Marcar" />
+                </div>
             </form>
         </div>
         <section className="cabeleireiro-extras">

@@ -106,12 +106,12 @@ export default class Gestao extends Component{
 				<Fragment>
 				<NavbarDono></NavbarDono>
 				<div className="container">
-					<h1>Gestão </h1>
+					<h1>Gestão dos meus salões</h1>
 					<div className="flex-row">
 						<div className="flex-large">
 							{this.state.editing ? (
 								<Fragment>
-									<h2>Editar cabeleireiro</h2>
+									<h2>Editar salão</h2>
 									<EditCabeleireiroForm
 										editing={this.state.editing}
 										setEditing={this.state.setEditing}
@@ -121,13 +121,13 @@ export default class Gestao extends Component{
 								</Fragment>
 							) : (
 								<Fragment>
-									<h2>Adicionar cabeleireiro</h2>
+									<h2>Adicionar salão</h2>
 									<AddCabeleireiroForm addCabeleireiro={addCabeleireiro}/>
 								</Fragment>
 							)}
 						</div>
 						<div className="flex-large">
-							<h2>Ver cabeleireiros</h2>
+							<h2>Ver salões</h2>
 							<CabeleireiroTable cabeleireiros={this.state.cabeleireiros} editRow={editRow}
 											   deleteCabeleireiro={deleteCabeleireiro}/>
 						</div>

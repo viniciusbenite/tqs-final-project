@@ -53,8 +53,9 @@ class CabeleireirosProvider extends Component {
             let morada=item.address;
             let imagens = [item.image];
             let type = item.type;
+            let contacto=item.contact;
 
-            let cabeleireiro = {nome,morada,descricao,cidade,type,imagens,id }
+            let cabeleireiro = {nome,morada,descricao,cidade,type,imagens,id ,contacto}
             if(type=="Cabeleireiro") tempItems.push(cabeleireiro); 
             
         });

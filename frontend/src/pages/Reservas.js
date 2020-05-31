@@ -124,7 +124,7 @@ export default class Album extends Component{
 
                         <CardContent className={classes.cardContent}>
                           <Typography gutterBottom variant="h5" component="h2">
-                            {e.service.saloon.name} - {e.service.saloon.city}
+                            {e.service.saloon.name} 
                           </Typography>
                           <Typography>
                             Data: {e.date}
@@ -135,13 +135,12 @@ export default class Album extends Component{
                           <Typography>
                             Serviço: {e.service.name}
                           </Typography>
-                          <Typography align={"center"}>
-                            -------------------
-                          </Typography>
+                         
 
                           <div>
+                            <h4></h4>
                             <Button onClick={(i) => this.deleteReservation(e.id)} name={e.id} variant="primary" size="sm">
-                              DELETE
+                              DESMARCAR
                             </Button>
                           </div>
 

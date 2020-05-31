@@ -7,7 +7,7 @@ export default function Cabeleireiro({ cabeleireiro }) {
     return <article className="cabeleireiro">
 
         <div className="img-container">
-            <img src={require('../images/cabeleireiro2.jpg')}
+            <img src={require('../images/cabeleireiro1.jpg')}
                 alt="single cabeleireiro" />
             <div className="price-top">
             <h6>{cidade}</h6>
