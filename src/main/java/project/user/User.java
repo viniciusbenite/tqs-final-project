@@ -1,7 +1,6 @@
 package project.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.reservation.Reservation;
@@ -17,7 +16,6 @@ import java.util.Set;
 @Entity
 @Data    //lombok notations
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")      // "user" is a reserved keyword for postgre so table name has to be "users"
 public class User implements Serializable {
 
@@ -27,31 +25,33 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
-    private String type;
-   
+    private String tipo;
 
     // reservas do cliente
     @JsonIgnore
-    @OneToMany(mappedBy="users")
+    @OneToMany(mappedBy = "users")
     private Set<Reservation> reservation;
-
 
     // saloes ao qual ele é o dono
     @JsonIgnore
-    @OneToMany(mappedBy="owner")
+    @OneToMany(mappedBy = "owner")
     private Set<Saloon> saloons;
 
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.tipo="cliente";
+    }
 
 
     public User(String name, String email, String password,String type) {
         this.name = name;
         this.email = email;
-        this.password = get_SHA_512_SecurePassword(password, "1234");
-        this.type=type;
+        this.password = password;
+        this.tipo = type;
     }
-
-
-
 
     // generate password
     public String get_SHA_512_SecurePassword(String passwordToHash, String salt){
@@ -103,12 +103,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getType() {
-        return type;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipo(String type) {
-        this.type = type;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Set<Reservation> getReservation() {

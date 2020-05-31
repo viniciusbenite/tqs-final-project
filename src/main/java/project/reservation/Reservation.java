@@ -25,7 +25,6 @@ public class Reservation implements Serializable {
     private String time;  // horas da marcação ( 16:30:00 )
 
 
-
     @ManyToOne
     @JoinColumn(name="users_id")
     private User users;
