@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import NavbarDono from "../components/NavbarDono";
 import api from "../services/api";
 import NavbarCliente from "../components/NavbarCliente";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -76,6 +77,10 @@ export default class Album extends Component{
 
     });
   }
+  deleteReservation(id){
+    api.delete("/reservation/"+id).then(re =>{console.log(re)})
+    window.location.reload(false);
+  }
 
   render() {
 
@@ -130,11 +135,17 @@ export default class Album extends Component{
                           <Typography>
                             Serviço: {e.service.name}
                           </Typography>
+                          <Typography align={"center"}>
+                            -------------------
+                          </Typography>
+
+                          <div>
+                            <Button onClick={(i) => this.deleteReservation(e.id)} name={e.id} variant="primary" size="sm">
+                              DELETE
+                            </Button>
+                          </div>
 
                         </CardContent>
-
-
-
                       </Card>
                     </Grid>
                 ))}
