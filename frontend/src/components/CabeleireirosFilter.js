@@ -8,7 +8,6 @@ const getUnique = (items, value) => {
 }
 export default function CabeleireirosFilter({cabeleireiros}) {
 const context = useContext(CabeleireirosContext);
-console.log(context);
 const {
     handleChangeCabeleireiros,
     nome,

@@ -1,4 +1,4 @@
-import React from 'react'
+    import React from 'react'
 
 const CabeleireiroTable = props => (
   <table>
@@ -6,8 +6,7 @@ const CabeleireiroTable = props => (
       <tr>
         <th>Nome</th>
         <th>Cidade</th>
-        <th>Imagem</th>
-        <th>Serviços e calendário</th>
+          <th>Tipo</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -15,20 +14,9 @@ const CabeleireiroTable = props => (
       {props.cabeleireiros.length > 0 ? (
         props.cabeleireiros.map(cabeleireiro => (
           <tr key={cabeleireiro.id}>
-            <td>{cabeleireiro.nome}</td>
-            <td>{cabeleireiro.cidade}</td>
-            <td>link da imagem?</td>
-            <td>
-              <button
-                onClick={() => {
-                  // por fazer
-                }}
-                classNome="button muted-button"
-              >
-                Ver
-              </button>
-              
-            </td>
+            <td>{cabeleireiro.name}</td>
+            <td>{cabeleireiro.city}</td>
+              <td>{cabeleireiro.type}</td>
             <td>
               <button
                 onClick={() => {

@@ -9,10 +9,10 @@ import { CabeleireirosProvider } from './context';
 ReactDOM.render(
     <Router>
     <CabeleireirosProvider>
-        
-            <App />
-        
-        </CabeleireirosProvider>
+
+        <App />
+
+    </CabeleireirosProvider>
     </Router>,
   document.getElementById('root'));
 

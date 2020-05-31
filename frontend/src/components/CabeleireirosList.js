@@ -12,13 +12,12 @@ export default function CabeleireirosList({cabeleireiros}) {
     }
     
     return (
-<section className="cabeleireiroslist">
-<div className="cabeleireiroslist-center">
-    {cabeleireiros.map(item => {
-        return <Cabeleireiro key={item.id} cabeleireiro={item} />;
-        })}
-</div>
-</section>
-
-);
+        <section className="cabeleireiroslist">
+        <div className="cabeleireiroslist-center">
+            {cabeleireiros.map(item => {
+                return <Cabeleireiro key={item.id} cabeleireiro={item} />;
+                })}
+        </div>
+        </section>
+    );
 }

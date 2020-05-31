@@ -39,7 +39,10 @@ public class SaloonController {
     @ApiOperation("Get all saloons")
     @GetMapping
     public List<Saloon> all() {
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/features
         return saloonService.getAllSaloon();
      
     }

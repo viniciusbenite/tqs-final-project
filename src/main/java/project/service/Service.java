@@ -31,6 +31,9 @@ public class Service implements Serializable {
     private String description;
     private String available;
 
+    public Service (String name){
+        this.name = name;
+    }
 
     // Salão que oferece o serviço
     
