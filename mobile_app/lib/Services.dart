@@ -54,7 +54,7 @@ User user;
 
 
 Future<List> getData() async {
-    var url = "http://d75fcf211556.ngrok.io/schedule";
+    var url = "http://10.0.2.2:8080/schedule";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -76,7 +76,7 @@ Future<List> getData() async {
 Future<http.Response> postData(Reservation reservation) async {
   
   return await http.post(
-    'http://d75fcf211556.ngrok.io/reservation/',
+    'http://10.0.2.2:8080/reservation/',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

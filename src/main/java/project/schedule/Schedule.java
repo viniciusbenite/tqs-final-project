@@ -35,18 +35,14 @@ public class Schedule {
     private Service service;
 
 
-//    public Schedule(Time startTime,Time endTime) {
-//        this.startTime=startTime;
-//        this.endTime=endTime;
-//
-//
-//
-//    }
-//
-//
-public Schedule() {
+   public Schedule(Time startTime,Time endTime) {
+       this.startTime=startTime;
+       this.endTime=endTime;
 
-}
+
+
+   }
+
 
     public Long getId() {
         return id;

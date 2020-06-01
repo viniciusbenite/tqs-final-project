@@ -67,10 +67,7 @@ public class Saloon implements Serializable {
         this.owner = owner;
         this.image = image;
     }
-//
-//    public Saloon(){
-//
-//    }
+
 
     public Long getId() {
         return id;

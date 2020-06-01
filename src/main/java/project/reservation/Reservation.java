@@ -32,16 +32,14 @@ public class Reservation implements Serializable {
     private Service services;
 
 
-//    public Reservation(String date,String time,User users,Service services) {
-//        this.date=date;
-//        this.time=time;
-//        this.users=users;
-//        this.services=services;
-//    }
+   public Reservation(String date,String time,User users,Service services) {
+      this.date=date;
+       this.time=time;
+      this.users=users;
+       this.services=services;
+        }
 
-//    public Reservation(){
-//
-//    }
+
 
     public void setUser(User user) {
         this.users = user;
