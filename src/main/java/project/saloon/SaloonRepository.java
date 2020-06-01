@@ -13,7 +13,7 @@ import java.util.Optional;
 @Transactional
 public interface SaloonRepository extends JpaRepository<Saloon, Long> {
 
-    User findByNameContainsIgnoreCase(String name);
+    Saloon findByNameContainsIgnoreCase(String name);
 
     List<Saloon> findAll();
 

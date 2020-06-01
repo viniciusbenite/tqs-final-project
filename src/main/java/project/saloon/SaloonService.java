@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 public interface SaloonService {
 
-    User getSaloonByName(String name);
+    Saloon getSaloonByName(String name);
 
     Optional<Saloon> getSaloonById(Long id);
 

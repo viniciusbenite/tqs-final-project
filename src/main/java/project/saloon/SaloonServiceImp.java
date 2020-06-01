@@ -17,7 +17,7 @@ public class SaloonServiceImp implements SaloonService {
     private SaloonRepository saloonRepository;
 
     @Override
-    public User getSaloonByName(String name) {
+    public Saloon getSaloonByName(String name) {
         return saloonRepository.findByNameContainsIgnoreCase(name);
     }
 
