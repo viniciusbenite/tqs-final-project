@@ -26,7 +26,7 @@ class _MyReservationsState extends State<MyReservations> {
   _MyReservationsState({this.user});
 
   Future<List> getData() async {
-    var url = "http://10.0.2.2:8080/reservation";
+    var url = "http://d75fcf211556.ngrok.io/reservation";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri
@@ -456,7 +456,7 @@ class _MyReservationsState extends State<MyReservations> {
 
   _delete(Reservation r) async {
    
-    var url = "http://10.0.2.2:8080/reservation/"+r.id.toString();
+    var url = "http://d75fcf211556.ngrok.io/reservation/"+r.id.toString();
         
     await http.delete(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri

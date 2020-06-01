@@ -41,6 +41,10 @@ public class Reservation implements Serializable {
         this.services=services;
     }
 
+    public Reservation(){
+        
+    }
+
     public void setUser(User user) {
         this.users = user;
     }

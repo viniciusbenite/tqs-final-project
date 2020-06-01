@@ -31,7 +31,7 @@ bool loaded;
   }
 
   Future<List> getData() async {
-    var url = "http://10.0.2.2:8080/user";
+    var url = "http://d75fcf211556.ngrok.io/user";
         
     http.Response response = await http.get(
       
@@ -52,7 +52,7 @@ bool loaded;
 
    saveData() async {
 
-    var url = "http://10.0.2.2:8080/saloon/save";
+    var url = "http://d75fcf211556.ngrok.io/saloon/save";
         
     await http.get(
       

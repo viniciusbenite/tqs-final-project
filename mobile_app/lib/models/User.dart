@@ -12,7 +12,7 @@ class User{
     name=data['name'];
     email=data['email'];
     password=data['password'];
-    type=data['tipo'];
+    type=data['type'];
   }
 
   Map<String, dynamic> toMap() {
@@ -21,7 +21,7 @@ class User{
      'name':name,
      'email':email,
      'password':password,
-     'tipo':type,
+     'type':type,
 
       
     };

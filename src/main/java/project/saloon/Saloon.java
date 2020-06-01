@@ -72,6 +72,10 @@ public class Saloon implements Serializable {
        
     }
 
+    public Saloon(){
+        
+    }
+
     public Long getId() {
         return id;
     }
@@ -162,5 +166,29 @@ public class Saloon implements Serializable {
         this.services = services;
     }
 
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image=image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description=description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAdress(String address) {
+        this.address=address;
+    }
 
 }

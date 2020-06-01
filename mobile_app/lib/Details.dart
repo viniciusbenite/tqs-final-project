@@ -51,7 +51,7 @@ class _DetailsState extends State<Details> {
   }
 
 Future<List> getData() async {
-    var url = "http://10.0.2.2:8080/service";
+    var url = "http://d75fcf211556.ngrok.io/service";
         
     http.Response response = await http.get(
       //Uri.encodeFull removes all the dashes or extra characters present in our Uri

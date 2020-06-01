@@ -16,6 +16,8 @@ import static project.constants.Paths.RESERVATION;
 public class ReservationController {
 
     @Autowired
+    private ReservationService reservationService;
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @ApiOperation("Get all reservations")

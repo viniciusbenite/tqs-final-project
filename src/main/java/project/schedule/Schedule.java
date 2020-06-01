@@ -25,7 +25,7 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String startTime;
+    private Time startTime;
     private Time endTime;
     
 
@@ -47,6 +47,10 @@ public class Schedule {
 
     }
 
+
+    public Schedule(){
+        
+    }
     public Long getId() {
         return id;
     }
@@ -55,11 +59,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public String getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 

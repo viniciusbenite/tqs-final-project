@@ -31,9 +31,6 @@ public class Service implements Serializable {
     private String description;
     private String available;
 
-    public Service (String name){
-        this.name = name;
-    }
 
     // Salão que oferece o serviço
     
@@ -64,7 +61,20 @@ public class Service implements Serializable {
 
     }
 
-    public Long getId() {
+    public Service(String name,Double price,String available,String description, Saloon saloon) {
+        this.name=name;
+        this.price=price;
+        this.description=description;
+        this.available=available;
+        this.saloon=saloon;
+
+    }
+
+    public Service(){
+        
+    }
+
+	public Long getId() {
         return id;
     }
 
