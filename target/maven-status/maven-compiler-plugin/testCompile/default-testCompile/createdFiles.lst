@@ -1,7 +1,0 @@
-project/unit/controllers/ScheduleControllerTest.class
-project/unit/services/ReservationServiceTest.class
-project/unit/controllers/UserControllerTest.class
-project/unit/controllers/ReservationControllerTest.class
-project/unit/controllers/ServiceControllerTest.class
-project/unit/controllers/SaloonControllerTest.class
-project/rest/SmokeTest.class
