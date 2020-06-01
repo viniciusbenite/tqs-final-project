@@ -12,8 +12,8 @@ public class ReservationNotFoundAdvice {
 
     @ResponseBody
     @ExceptionHandler(ReservationNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(ReservationNotFoundException ex) {
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    String reservationNotFoundHandler(ReservationNotFoundException ex) {
         return ex.getMessage();
     }
 }
