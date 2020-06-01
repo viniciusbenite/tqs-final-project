@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -7,22 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import NavbarDono from "../components/NavbarDono";
+import api from "../services/api";
 import NavbarCliente from "../components/NavbarCliente";
-
-function Reservas() {
-  
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Reservas © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -64,72 +52,106 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const cards = [1, 2, 3, 4];
-const isDone=[true,false,false,false]
+const isDone=[true,false,false,false];
+const classes = useStyles;
 
-export default function Album() {
-  const classes = useStyles();
-  
-  return (
-    
-    <React.Fragment>
-      <NavbarCliente></NavbarCliente>
-      <CssBaseline />
-     
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h5" variant="h4" align="center" color="textPrimary" gutterBottom>
-             As minhas reservas
-            </Typography>
-            <div className={classes.heroButtons}>
-              
+export default class Album extends Component{
+
+  state={
+    reservas: [],
+  };
+
+  componentDidMount() {
+    this.GetReservations();
+  }
+  GetReservations() {
+    api.get("/reservation").then(res => {
+      let dataRes = res.data;
+      for (const n in dataRes) {
+        if(dataRes[n].users.email == localStorage.getItem("user_email")){
+          this.setState(prevState =>({
+            reservas: [...prevState.reservas, dataRes[n]]
+          }))
+        }
+      }
+
+    });
+  }
+  deleteReservation(id){
+    api.delete("/reservation/"+id).then(re =>{console.log(re)})
+    window.location.reload(false);
+  }
+
+  render() {
+
+    return (
+        <React.Fragment>
+          <NavbarCliente></NavbarCliente>
+          <CssBaseline />
+
+          <main>
+
+            {/* Hero unit */}
+            <div className={classes.heroContent}>
+              <Container maxWidth="sm">
+                <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
+                </Typography>
+                <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
+                  Minhas Reservas:
+                </Typography>
+                <div className={classes.heroButtons}>
+
+                </div>
+              </Container>
             </div>
-          </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-              
-                <Card className= {isDone[cards.indexOf(card)]?classes.cardDone:classes.card}>
-                 
-                  <CardMedia
-                  component="img"
-                    className={classes.cardMedia}
-                    
-                    src={require('../images/cabeleireiro1.jpg')}
-                    title=""
-                    
-                    
-                  />
-                  
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Cabeleireiro 1 - Lisboa
-                    </Typography>
-                    <Typography>
-                      25 de Abril de 2020
-                    </Typography>
-                    <Typography>
-                      13h - 14h  
-                    </Typography>
-                    <Typography>
-                     Serviço: Corte de cabelo
-                    </Typography>
-                  
-                  </CardContent>
-                 
-                    
-               
-                </Card>
+            <Container className={classes.cardGrid} maxWidth="md">
+              {/* End hero unit */}
+              <Grid container spacing={4}>
+                {this.state.reservas.map((e,key) => (
+                    <Grid item key={key} xs={12} sm={6} md={3}>
+
+                      <Card className= {isDone[cards.indexOf(key)]?classes.cardDone:classes.card}>
+
+                        <CardMedia
+                            component="img"
+                            className={classes.cardMedia}
+
+                            src={require('../images/cabeleireiro1.jpg')}
+                            title=""
+
+
+                        />
+
+                        <CardContent className={classes.cardContent}>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {e.service.saloon.name} 
+                          </Typography>
+                          <Typography>
+                            Data: {e.date}
+                          </Typography>
+                          <Typography>
+                            Hora: {e.time}
+                          </Typography>
+                          <Typography>
+                            Serviço: {e.service.name}
+                          </Typography>
+                         
+
+                          <div>
+                            <h4></h4>
+                            <Button onClick={(i) => this.deleteReservation(e.id)} name={e.id} variant="primary" size="sm">
+                              DESMARCAR
+                            </Button>
+                          </div>
+
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      
-    </React.Fragment>
-  );
+            </Container>
+          </main>
+
+        </React.Fragment>
+    )};
 }

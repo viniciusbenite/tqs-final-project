@@ -57,8 +57,8 @@ public class ReservationControllerTest {
         reservation.setId(1L);
         reservation.setUser(user);
         reservation.setService(service);
-        reservation.setTime(Time.valueOf(LocalTime.now()));
-        reservation.setDate(Date.valueOf(LocalDate.now()));
+        reservation.setTime("12:30");
+        reservation.setDate("12/04/2020");
         System.out.println(reservation.getId());
 
         List<Reservation> allReservations = singletonList(reservation);
@@ -84,8 +84,8 @@ public class ReservationControllerTest {
         reservation.setId(1L);
         reservation.setUser(user);
         reservation.setService(service);
-        reservation.setTime(Time.valueOf(LocalTime.now()));
-        reservation.setDate(Date.valueOf(LocalDate.now()));
+        reservation.setTime("12:30");
+        reservation.setDate("12/04/2020");
 
         given(reservationController.getReservation(reservation.getId())).willReturn(reservation);
 

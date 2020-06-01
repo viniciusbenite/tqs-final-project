@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
-    private String tipo;
+    private String type;
 
     // reservas do cliente
     @JsonIgnore
@@ -38,11 +38,23 @@ public class User implements Serializable {
     private Set<Saloon> saloons;
 
 
-
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = get_SHA_512_SecurePassword(password, "1234");
+        this.password = password;
+        this.type="cliente";
+    }
+
+
+    public User(){
+        
+    }
+
+    public User(String name, String email, String password,String type) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.type = type;
     }
 
     // generate password
@@ -95,12 +107,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return this.type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Set<Reservation> getReservation() {

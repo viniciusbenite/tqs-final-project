@@ -8,11 +8,6 @@ import getUsers from "../services/auth";
 import { Form, Container } from "./styles";
 
 
-const styles = {
-  paperContainer: {
-      backgroundImage: `url(${Image})`
-  }
-}
 
 class Login extends Component {
   state = {
@@ -73,6 +68,8 @@ class Login extends Component {
         <Form onSubmit={this.handleSignIn}>
           
           {this.state.error && <p>{this.state.error}</p>}
+          <h3>PÊLO</h3>
+          <h3></h3>
           <input
             type="email"
             placeholder="Endereço de e-mail"

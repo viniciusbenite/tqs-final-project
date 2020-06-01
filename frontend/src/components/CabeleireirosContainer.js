@@ -14,7 +14,7 @@ if (loading) {
 }
     return (
         <>
-           
+            {console.log(context)}
             <CabeleireirosFilter  cabeleireiros={ cabeleireiros} />
             <CabeleireirosList  cabeleireiros={sortedCabeleireiros}/>
         </>

@@ -27,6 +27,7 @@ public class Schedule {
 
     private Time startTime;
     private Time endTime;
+    
 
     // Horario de um salão  (Um salão tem um horario (tempo em que abre e fecha))
     @OneToOne(mappedBy = "schedule")
@@ -37,6 +38,19 @@ public class Schedule {
     @JoinColumn(name = "service_id")
     private Service service;
 
+
+    public Schedule(Time startTime,Time endTime) {
+        this.startTime=startTime;
+        this.endTime=endTime;
+    
+      
+
+    }
+
+
+    public Schedule(){
+        
+    }
     public Long getId() {
         return id;
     }

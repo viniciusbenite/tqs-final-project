@@ -9,7 +9,7 @@ const Barbeiros = () => {
     return (
         <>
         {localStorage.getItem("user_type")=="dono" ? <NavbarDono></NavbarDono>:<NavbarCliente></NavbarCliente> }
-        <Hero hero="cabeleireirosHero">;
+        <Hero hero="barbeirosHero">;
             <Banner title="Barbeiros">
     
                
