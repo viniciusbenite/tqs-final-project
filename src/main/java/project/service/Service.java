@@ -1,12 +1,10 @@
 package project.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import project.schedule.Schedule;
 import project.reservation.Reservation;
 import project.saloon.Saloon;
+import project.schedule.Schedule;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,8 +14,6 @@ import java.util.Set;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "service")
 
 public class Service implements Serializable {
@@ -48,30 +44,27 @@ public class Service implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "services")
     private Set<Reservation> reservation;
 
+    //    public Service(String name,Double price,String description,String available, Set<Schedule> schedules, Set<Reservation> reservation) {
+//        this.name=name;
+//        this.price=price;
+//        this.description=description;
+//        this.available=available;
+//        this.schedules=schedules;
+//        this.reservation=reservation;
+//
+//    }
+//
+//    public Service(String name,Double price,String available,String description, Saloon saloon) {
+//        this.name=name;
+//        this.price=price;
+//        this.description=description;
+//        this.available=available;
+//        this.saloon=saloon;
+//
+//    }
+//
+    public Service() {
 
-
-
-    public Service(String name,Double price,String description,String available, Set<Schedule> schedules, Set<Reservation> reservation) {
-        this.name=name;
-        this.price=price;
-        this.description=description;
-        this.available=available;
-        this.schedules=schedules;
-        this.reservation=reservation;
-
-    }
-
-    public Service(String name,Double price,String available,String description, Saloon saloon) {
-        this.name=name;
-        this.price=price;
-        this.description=description;
-        this.available=available;
-        this.saloon=saloon;
-
-    }
-
-    public Service(){
-        
     }
 
 	public Long getId() {

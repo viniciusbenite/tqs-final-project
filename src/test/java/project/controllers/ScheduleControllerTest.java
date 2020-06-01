@@ -1,5 +1,4 @@
-package project.unit.controllers;
-
+package project.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import project.saloon.Saloon;
 import project.schedule.Schedule;
+import project.schedule.ScheduleController;
 import project.service.Service;
-import project.service.ServiceController;
 import project.user.User;
 
 import java.util.List;
@@ -27,12 +26,12 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static project.constants.Paths.SERVICE;
-import static project.unit.controllers.ReservationControllerTest.asJsonString;
+import static project.constants.Paths.SCHEDULE;
+import static project.controllers.ReservationControllerTest.asJsonString;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ServiceController.class)
-public class ServiceControllerTest {
+@WebMvcTest(ScheduleController.class)
+public class ScheduleControllerTest {
 
     User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
     Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
@@ -42,13 +41,13 @@ public class ServiceControllerTest {
     Service service = new Service();
     Schedule schedule = new Schedule();
 
-    List<Service> allService = singletonList(service);
+    List<Schedule> allSchedule = singletonList(schedule);
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private ServiceController serviceController;
+    private ScheduleController scheduleController;
 
     @Before
     public void setup() {
@@ -61,77 +60,77 @@ public class ServiceControllerTest {
         schedule.setId(1L);
         schedule.setSallon(saloon);
         schedule.setService(service);
+
     }
 
-
     @Test
-    public void getAllServices() throws Exception {
+    public void getAllSchedule() throws Exception {
         /*
             Check GET all method
         */
-        given(serviceController.all()).willReturn(allService);
+        given(scheduleController.all()).willReturn(allSchedule);
 
-        mockMvc.perform(get(SERVICE)
+        mockMvc.perform(get(SCHEDULE)
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int) (long) service.getId())));
+                .andExpect(jsonPath("$[0].id", is((int) (long) schedule.getId())));
     }
 
     @Test
-    public void getSingleService() throws Exception {
+    public void getSingleSchedule() throws Exception {
         /*
             Check GET {ID} method
         */
-        given(serviceController.getService(service.getId())).willReturn(service);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(get(SERVICE + "/" + service.getId())
+        mockMvc.perform(get(SCHEDULE + "/" + schedule.getId())
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is((int) (long) service.getId())));
+                .andExpect(jsonPath("id", is((int) (long) schedule.getId())));
     }
 
     @Test
-    public void createNewService() throws Exception {
+    public void createNewSchedule() throws Exception {
         /*
-            Create new service test (POST)
+            Create new schedule test (POST)
         */
-        given(serviceController.getService(service.getId())).willReturn(service);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(post(SERVICE + "/")
+        mockMvc.perform(post(SCHEDULE + "/")
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(service)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deleteServiceTest() throws Exception {
+    public void deleteScheduleTest() throws Exception {
         /*
-            Delete a single service test
+            Delete a single schedule test
         */
-        given(serviceController.getService(service.getId())).willReturn(service);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(delete(SERVICE + "/" + service.getId())
+        mockMvc.perform(delete(SCHEDULE + "/" + schedule.getId())
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(service)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deleteAllServiceTest() throws Exception {
+    public void deleteAllScheduleTest() throws Exception {
         /*
-            Delete all service test
+            Delete all schedule test
         */
-        given(serviceController.all()).willReturn(allService);
+        given(scheduleController.all()).willReturn(allSchedule);
 
-        mockMvc.perform(delete(SERVICE + "/")
+        mockMvc.perform(delete(SCHEDULE + "/")
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(service)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
@@ -141,7 +140,7 @@ public class ServiceControllerTest {
             the call must accepts only longs/int as argument
         */
 
-        mockMvc.perform(get(SERVICE + "/hello")
+        mockMvc.perform(get(SCHEDULE + "/hello")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }

@@ -14,6 +14,7 @@ import project.saloon.Saloon;
 import project.saloon.SaloonRepository;
 import project.saloon.SaloonService;
 import project.saloon.SaloonServiceImp;
+import project.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,10 @@ public class SaloonServiceTest {
 
     @Before
     public void setUp() {
-        Saloon test = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         test.setId(10L);
         test.setName("saloon");
 
@@ -71,21 +75,27 @@ public class SaloonServiceTest {
 
     @Test
     public void getAllSaloon() {
-        Saloon test = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         test.setId(10L);
         test.setName("saloon");
         List<Saloon> all = new ArrayList<>();
         all.add(test);
 
-        List <Saloon> allSchedule = saloonService.getAllSaloon();
+        List<Saloon> allSchedule = saloonService.getAllSaloon();
         assertEquals(all, allSchedule);
     }
 
     @Test
     public void save() {
-        Saloon created = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon created = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         Saloon saved = saloonRepository.save(created);
 
-        assertEquals(created.getName() , saved.getName());
+        assertEquals(created.getName(), saved.getName());
     }
 }

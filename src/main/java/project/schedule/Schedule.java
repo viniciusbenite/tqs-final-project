@@ -1,8 +1,6 @@
 package project.schedule;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import project.saloon.Saloon;
 import project.service.Service;
 
@@ -16,8 +14,6 @@ import java.sql.Time;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "schedule")
 public class Schedule {
 
@@ -39,18 +35,19 @@ public class Schedule {
     private Service service;
 
 
-    public Schedule(Time startTime,Time endTime) {
-        this.startTime=startTime;
-        this.endTime=endTime;
-    
-      
+//    public Schedule(Time startTime,Time endTime) {
+//        this.startTime=startTime;
+//        this.endTime=endTime;
+//
+//
+//
+//    }
+//
+//
+public Schedule() {
 
-    }
+}
 
-
-    public Schedule(){
-        
-    }
     public Long getId() {
         return id;
     }

@@ -8,8 +8,6 @@ import project.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 @Data
@@ -26,24 +24,24 @@ public class Reservation implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name="users_id", nullable=false)
+    @JoinColumn(name = "users_id", nullable = false)
     private User users;
 
     @ManyToOne
-    @JoinColumn(name="service_id", nullable=false)
+    @JoinColumn(name = "service_id", nullable = false)
     private Service services;
 
 
-    public Reservation(String date,String time,User users,Service services) {
-        this.date=date;
-        this.time=time;
-        this.users=users;
-        this.services=services;
-    }
+//    public Reservation(String date,String time,User users,Service services) {
+//        this.date=date;
+//        this.time=time;
+//        this.users=users;
+//        this.services=services;
+//    }
 
-    public Reservation(){
-        
-    }
+//    public Reservation(){
+//
+//    }
 
     public void setUser(User user) {
         this.users = user;

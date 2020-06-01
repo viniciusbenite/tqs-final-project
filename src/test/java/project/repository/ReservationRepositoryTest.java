@@ -32,7 +32,7 @@ class ReservationRepositoryTest {
         Reservation test = new Reservation();
         Reservation test2 = new Reservation();
         Service service = new Service();
-        User user = new User();
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
         test.setService(service);
         test2.setService(service);
         test.setUser(user);
@@ -60,7 +60,7 @@ class ReservationRepositoryTest {
         Reservation test = new Reservation();
         Reservation test2 = new Reservation();
         Service service = new Service();
-        User user = new User();
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
         test.setService(service);
         test2.setService(service);
         test.setUser(user);
@@ -85,7 +85,7 @@ class ReservationRepositoryTest {
     void deleteById() {
         Reservation test = new Reservation();
         Service service = new Service();
-        User user = new User();
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
         test.setService(service);
         test.setUser(user);
         testEntityManager.persistAndFlush(user);
@@ -106,7 +106,7 @@ class ReservationRepositoryTest {
     void getReservationById() {
         Reservation test = new Reservation();
         Service service = new Service();
-        User user = new User();
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
         test.setUser(user);
         testEntityManager.persistAndFlush(user);
         testEntityManager.persistAndFlush(service);

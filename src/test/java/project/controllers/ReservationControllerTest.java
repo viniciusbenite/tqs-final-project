@@ -1,4 +1,4 @@
-package project.unit.controllers;
+package project.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,10 +16,6 @@ import project.reservation.ReservationRepository;
 import project.service.Service;
 import project.user.User;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import static java.util.Collections.singletonList;

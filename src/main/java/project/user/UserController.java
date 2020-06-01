@@ -46,7 +46,7 @@ public class UserController {
                     user.setId(newUser.getId());
                     user.setEmail(newUser.getEmail());
                     user.setPassword(newUser.getPassword());
-                    user.setTipo(newUser.getTipo());
+                    user.setType(newUser.getType());
                     user.setSaloons(newUser.getSaloons());
                     user.setReservation(newUser.getReservation());
                     return userRepository.save(user);

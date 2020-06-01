@@ -8,18 +8,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import project.saloon.Saloon;
 import project.saloon.SaloonRepository;
-import project.schedule.Schedule;
-import project.service.Service;
 import project.user.User;
-import project.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -34,24 +28,31 @@ class SaloonRepositoryTest {
 
     @Test
     void findByNameContainsIgnoreCase() {
-        Saloon test = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         test.setName("saloon");
-        User owner = new User();
 
         testEntityManager.persistAndFlush(owner);
         test.setOwner(owner);
         testEntityManager.persistAndFlush(test);
         Saloon found = saloonRepository.findByNameContainsIgnoreCase(test.getName());
 
-        assertEquals(found.getName() ,test.getName());
+        assertEquals(found.getName(), test.getName());
     }
 
     @Test
     void findAll() {
-        Saloon test = new Saloon();
-        Saloon test2 = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
+        test.setName("saloon");
+        Saloon test2 = new Saloon("Saloon name 2", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         List<Saloon> all = new ArrayList<Saloon>();
-        User owner = new User();
         testEntityManager.persistAndFlush(owner);
         test.setOwner(owner);
         test2.setOwner(owner);
@@ -71,23 +72,28 @@ class SaloonRepositoryTest {
 
     @Test
     void getSaloonById() {
-        Saloon test = new Saloon();
-        User owner = new User();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         testEntityManager.persistAndFlush(owner);
         test.setOwner(owner);
         Long id = (Long) testEntityManager.persistAndGetId(test);
 
         Saloon found = saloonRepository.getSaloonById(id).get();
 
-        assertEquals(found.getId() , id);
+        assertEquals(found.getId(), id);
     }
 
     @Test
     void deleteAll() {
-        Saloon test = new Saloon();
-        Saloon test2 = new Saloon();
-
-        User owner = new User();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
+        Saloon test2 = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         testEntityManager.persistAndFlush(owner);
         test.setOwner(owner);
         test2.setOwner(owner);
@@ -108,15 +114,17 @@ class SaloonRepositoryTest {
 
     @Test
     void deleteByName() {
-        Saloon test = new Saloon();
+        User owner = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon test = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", owner);
         test.setName("saloon");
-        User owner = new User();
         testEntityManager.persistAndFlush(owner);
         test.setOwner(owner);
         testEntityManager.persistAndFlush(test);
         Saloon found = saloonRepository.findByNameContainsIgnoreCase(test.getName());
 
-        assertEquals(test.getName() , found.getName() );
+        assertEquals(test.getName(), found.getName());
 
         saloonRepository.deleteByName(test.getName());
         assertNull(saloonRepository.findByNameContainsIgnoreCase(test.getName()));
