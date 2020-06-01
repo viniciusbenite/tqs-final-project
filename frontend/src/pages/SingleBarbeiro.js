@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import defaultBcg from '../images/maye4.jpg';
+import defaultBcg from '../images/esta.jpg';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
 import { CabeleireirosContext } from '../context';
@@ -202,7 +202,7 @@ export default class SingleBarbeiro extends Component {
                     </div>
                 </section>
                 <section className="cabeleireiro-extras">
-                    <h6>Serviços disponíveis</h6>
+                    <h3>Serviços disponíveis</h3>
 
                 </section>
                 <div className="service_option">

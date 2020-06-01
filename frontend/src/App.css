@@ -310,7 +310,8 @@ h6 {
 /* end pf featured cabeleireiros */
 /* cabeleireiro */
 .cabeleireiro {
-  width: 500px;
+  
+  
   box-shadow: var(--lightShadow);
   transition: var(--mainTransition);
 }

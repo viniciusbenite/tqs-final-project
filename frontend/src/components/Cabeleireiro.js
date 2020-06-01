@@ -20,6 +20,8 @@ export default function Cabeleireiro({ cabeleireiro }) {
         </div>
         <p className="cabeleireiro-info">{nome}</p>
         </article>
+        
+        
    
 }
 

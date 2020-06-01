@@ -17,16 +17,16 @@ class SignUpDono extends Component {
 
   handleSignUp = async e => {
     e.preventDefault();
-    const { name, email, password,type } = this.state;
+    const { name, email, password, type } = this.state;
     if (!name || !email || !password) {
-      this.setState({ error: "Preencha todos os dados para se cadastrar" });
+      this.setState({ error: "Preencha todos os dados para se registar" });
     } else {
       try {
         await api.post("/user/", { name, email, password,type });
         this.props.history.push("/");
       } catch (err) {
         console.log(err);
-        this.setState({ error: "Ocorreu um erro ao registrar sua conta. T.T" });
+        this.setState({ error: "Ocorreu um erro ao registrar sua conta." });
       }
     }
   };
