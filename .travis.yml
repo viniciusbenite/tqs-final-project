@@ -4,6 +4,7 @@ addons:
   sonarcloud:
     organization: viniciusbenite
     token: "${SONAR_TOKEN}"
+sudo: required
 cache:
   directories:
     - "$HOME/.m2/repository"
