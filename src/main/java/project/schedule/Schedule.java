@@ -3,7 +3,7 @@ package project.schedule;
 import lombok.Data;
 import project.saloon.Saloon;
 import project.service.Service;
-
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Time;
 
@@ -14,6 +14,7 @@ import java.sql.Time;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "schedule")
 public class Schedule {
 
@@ -39,9 +40,9 @@ public class Schedule {
        this.startTime=startTime;
        this.endTime=endTime;
 
-
-
    }
+
+
 
 
     public Long getId() {

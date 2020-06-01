@@ -68,6 +68,8 @@ public class Saloon implements Serializable {
         this.image = image;
     }
 
+  
+
 
     public Long getId() {
         return id;
