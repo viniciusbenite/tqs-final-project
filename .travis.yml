@@ -11,7 +11,7 @@ cache:
     - "$HOME/.sonar/cache"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-before_script:
+before_install:
   - chmod a+x ./mvnw
 script:
   - "./mvnw clean install -B"
