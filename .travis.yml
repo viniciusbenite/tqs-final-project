@@ -13,9 +13,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 before_install:
   - chmod a+x ./mvnw
-before_script:
-  - psql -c "create database barbershop;" -U postgres
-  - sudo -u postgres psql -c "ALTER ROLE postgres WITH password 'postgres'"
 script:
   - "./mvnw clean install -B"
   - "./mvnw clean verify sonar:sonar -Pcoverage"
