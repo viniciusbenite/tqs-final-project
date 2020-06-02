@@ -1,5 +1,5 @@
 export default function getReservas()  {
-    return fetch('http://localhost:3000/reservation')
+    return fetch('https://tqs-final-project-barbershop.herokuapp.com/reservation')
         .then((response) => {
             return response.json().then((data) => {
 
