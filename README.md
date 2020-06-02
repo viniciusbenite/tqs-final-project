@@ -33,4 +33,4 @@ The final product of this project cosists in a web project to help users to find
   • [JUnit](https://junit.org/junit5/), [JaCoCo](https://www.eclemma.org/jacoco/), [Mockito](https://site.mockito.org/), [Selenium WebDriver](https://www.selenium.dev/projects/), [SonarCloud](https://sonarcloud.io)
 
 ### CI / CD
-Continuous integration and deploy are made with help of Travis CI and Heroku.
+Continuous integration and deploy are made with help of [Travis CI](https://travis-ci.org/github/viniciusbenite/tqs-final-project), [SonarCloud](https://sonarcloud.io/dashboard?branch=features&id=org.ua%3Atqs_final_project) and [Heroku](https://tqs-final-project-barbershop.herokuapp.com/greeting).
