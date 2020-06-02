@@ -3,6 +3,7 @@ package project.rest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import project.reservation.ReservationController;
 import project.saloon.SaloonController;
 import project.schedule.ScheduleController;
@@ -12,6 +13,7 @@ import project.user.UserController;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@ContextConfiguration()
 public class SmokeTest {
 
     @Autowired
