@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static project.constants.Paths.SALOON;
+
 
 @RestController
-@RequestMapping(value = SALOON)
+@RequestMapping("/saloon")
 @Api(value = "Métodos para gerenciar salões")
 public class SaloonController {
 

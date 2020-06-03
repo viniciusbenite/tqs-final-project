@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static project.constants.Paths.RESERVATION;
+
 
 @RestController
-@RequestMapping(value = RESERVATION)
-@Api(value = "Métodos para gerenciar reservas")
+@RequestMapping("/reservation")
+
 public class ReservationController {
 
     @Autowired

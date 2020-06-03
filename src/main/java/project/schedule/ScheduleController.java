@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static project.constants.Paths.SCHEDULE;
 
 @RestController
-@RequestMapping(value = SCHEDULE)
+@RequestMapping("/schedule")
 public class ScheduleController {
 
     @Autowired

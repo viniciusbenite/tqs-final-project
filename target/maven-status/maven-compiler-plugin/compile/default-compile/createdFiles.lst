@@ -16,7 +16,6 @@ project/service/ServiceNotFoundAdvice.class
 project/service/ServiceController.class
 project/service/Service.class
 project/schedule/ScheduleNotFoundAdvice.class
-project/application/GreetingController.class
 project/saloon/SaloonNotFoundException.class
 project/user/User.class
 project/user/UserService.class

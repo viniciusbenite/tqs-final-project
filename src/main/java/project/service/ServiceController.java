@@ -9,7 +9,7 @@ import java.util.List;
 import static project.constants.Paths.SERVICE;
 
 @RestController
-@RequestMapping(value = SERVICE)
+@RequestMapping("/service")
 public class ServiceController {
 
     @Autowired
