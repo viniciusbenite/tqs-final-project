@@ -44,6 +44,10 @@ public class SaloonController {
      
     }
 
+ 
+
+
+
     @ApiOperation("Create a new saloon")
     @PostMapping("/")
     public Saloon newSaloon(@RequestBody Saloon newSaloon) {
