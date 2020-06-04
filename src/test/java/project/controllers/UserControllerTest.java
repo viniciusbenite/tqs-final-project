@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static project.constants.Paths.USER;
-import static project.controllers.ReservationControllerTest.asJsonString;
+import static project.controllers.ReservationControllerITTest.asJsonString;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
