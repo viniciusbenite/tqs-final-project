@@ -32,7 +32,7 @@ import static project.controllers.ReservationControllerITTest.asJsonString;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ServiceController.class)
-public class ServiceControllerTest {
+public class ServiceControllerITTest {
 
     User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
     Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",

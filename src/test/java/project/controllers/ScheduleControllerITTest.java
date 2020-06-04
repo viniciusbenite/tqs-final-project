@@ -1,6 +1,5 @@
 package project.controllers;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import project.saloon.Saloon;
 import project.schedule.Schedule;
+import project.schedule.ScheduleController;
 import project.service.Service;
 import project.user.User;
-import project.user.UserController;
 
 import java.util.List;
 
@@ -27,12 +26,12 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static project.constants.Paths.USER;
+import static project.constants.Paths.SCHEDULE;
 import static project.controllers.ReservationControllerITTest.asJsonString;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(ScheduleController.class)
+public class ScheduleControllerITTest {
 
     User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
     Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
@@ -42,13 +41,13 @@ public class UserControllerTest {
     Service service = new Service();
     Schedule schedule = new Schedule();
 
-    List<User> allUsers = singletonList(user);
+    List<Schedule> allSchedule = singletonList(schedule);
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserController userController;
+    private ScheduleController scheduleController;
 
     @Before
     public void setup() {
@@ -62,78 +61,76 @@ public class UserControllerTest {
         schedule.setSallon(saloon);
         schedule.setService(service);
 
-        user.setId(1111L);
     }
 
-
     @Test
-    public void getAllUsers() throws Exception {
+    public void getAllSchedule() throws Exception {
         /*
             Check GET all method
         */
-        given(userController.all()).willReturn(allUsers);
+        given(scheduleController.all()).willReturn(allSchedule);
 
-        mockMvc.perform(get(USER)
+        mockMvc.perform(get(SCHEDULE)
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int) (long) user.getId())));
+                .andExpect(jsonPath("$[0].id", is((int) (long) schedule.getId())));
     }
 
     @Test
-    public void getSingleUser() throws Exception {
+    public void getSingleSchedule() throws Exception {
         /*
             Check GET {ID} method
         */
-        given(userController.getUser(user.getId())).willReturn(user);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(get(USER + "/" + user.getId())
+        mockMvc.perform(get(SCHEDULE + "/" + schedule.getId())
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is((int) (long) user.getId())));
+                .andExpect(jsonPath("id", is((int) (long) schedule.getId())));
     }
 
     @Test
-    public void createNewService() throws Exception {
+    public void createNewSchedule() throws Exception {
         /*
-            Create new service test (POST)
+            Create new schedule test (POST)
         */
-        given(userController.getUser(user.getId())).willReturn(user);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(post(USER + "/")
+        mockMvc.perform(post(SCHEDULE + "/")
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deleteUserTest() throws Exception {
+    public void deleteScheduleTest() throws Exception {
         /*
-            Delete a single user test
+            Delete a single schedule test
         */
-        given(userController.getUser(user.getId())).willReturn(user);
+        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
 
-        mockMvc.perform(delete(USER + "/" + user.getId())
+        mockMvc.perform(delete(SCHEDULE + "/" + schedule.getId())
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deleteAllUsersTest() throws Exception {
+    public void deleteAllScheduleTest() throws Exception {
         /*
-            Delete all user test
+            Delete all schedule test
         */
-        given(userController.getUser(user.getId())).willReturn(user);
+        given(scheduleController.all()).willReturn(allSchedule);
 
-        mockMvc.perform(delete(USER + "/")
+        mockMvc.perform(delete(SCHEDULE + "/")
                 .with(user("Fulano de Tal").password("somepass"))
                 .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
+                .content(asJsonString(schedule)))
                 .andExpect(status().isOk());
     }
 
@@ -143,7 +140,7 @@ public class UserControllerTest {
             the call must accepts only longs/int as argument
         */
 
-        mockMvc.perform(get(USER + "/hello")
+        mockMvc.perform(get(SCHEDULE + "/hello")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
