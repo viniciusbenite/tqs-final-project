@@ -18,18 +18,21 @@ public class UserController {
     private UserRepository userRepository;
 
     @ApiOperation("Get all users")
+    @CrossOrigin(origins="*")
     @GetMapping
     public List<User> all() {
         return userService.getAllUser();
     }
 
     @ApiOperation("Create a new user")
+    @CrossOrigin(origins="*")
     @PostMapping("/")
     public User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }
 
     @ApiOperation("Get a single user")
+    @CrossOrigin(origins="*")
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
         return userRepository.getUserById(id)
@@ -37,6 +40,7 @@ public class UserController {
     }
 
     @ApiOperation("Edit a user")
+    @CrossOrigin(origins="*")
     @PutMapping("/{id}")
     public User editUser(@RequestBody User newUser,
                          @PathVariable Long id) {
@@ -58,12 +62,14 @@ public class UserController {
     }
 
     @ApiOperation("Delete a user")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
     }
 
     @ApiOperation("Delete all users")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/")
     public void purgeUser() {
         userRepository.deleteAll();

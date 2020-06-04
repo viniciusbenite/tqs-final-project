@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import project.home_page.Greeting;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @ApiOperation(value = "Home Page")
+    @CrossOrigin(origins="*")
     @GetMapping(value = HOME)
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
