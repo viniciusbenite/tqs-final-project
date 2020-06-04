@@ -31,7 +31,7 @@ import static project.controllers.ReservationControllerITTest.asJsonString;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(SaloonController.class)
-public class SaloonControllerTest {
+public class SaloonControllerITTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -75,7 +75,6 @@ public class ReservationsControllerTest {
 
 
 
-
         Mockito.when(R.save(reservation)).thenReturn(reservation);
 
 
@@ -119,6 +118,18 @@ public class ReservationsControllerTest {
         reservation.setService(service);
         reservation.setTime("12:30");
         reservation.setDate("12/04/2020");
+
+
+        reservation.setUsers(user);
+        assertEquals(user,reservation.getUsers());
+        reservation.setService(service);
+        assertEquals(service,reservation.getService());
+        reservation.setId(reservation.getId());
+        assertEquals(reservation.getId(),reservation.getId());
+        reservation.setTime(reservation.getTime());
+        assertEquals(reservation.getTime(),reservation.getTime());
+        reservation.setDate(reservation.getDate());
+        assertEquals(reservation.getDate(),reservation.getDate());
 
 
 
