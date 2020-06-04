@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration()
@@ -80,4 +81,5 @@ public class ReservationServiceTest {
         Reservation saved = reservationRepository.save(created);
         assertEquals(created.getId() , saved.getId());
     }
+
 }

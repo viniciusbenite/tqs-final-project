@@ -14,12 +14,14 @@ import project.user.User;
 import project.user.UserRepository;
 import project.user.UserService;
 import project.user.UserServiceImp;
-
+import org.mockito.internal.verification.VerificationModeFactory;
 import java.util.ArrayList;
 import java.util.List;
+import org.mockito.InjectMocks;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration()
@@ -39,6 +41,8 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    @InjectMocks
+    private UserServiceImp userServiceI;
 
     @Before
     public void setUp() {
@@ -64,6 +68,14 @@ public class UserServiceTest {
         assertEquals(found.getName(),name);
     }
 
+    @Test
+    public void whenInValidName_thenEmployeeShouldNotBeFound() {
+        User fromDb = userService.getUserByName("wrong_name");
+        assertThat(fromDb).isNull();
+
+        verifyFindByNameIsCalledOnce("wrong_name");
+    }
+
 
     @Test
     public void all() {
@@ -79,11 +91,27 @@ public class UserServiceTest {
         assertEquals(all, serviceAllUser);
     }
 
+
     @Test
     public void save(){
         User created = new User("created","test@email.com", "pass");
         User saved = userRepository.save(created);
 
         assertEquals(created.getName() , saved.getName());
+    }
+
+    private void verifyFindByNameIsCalledOnce(String name) {
+        Mockito.verify(userRepository, VerificationModeFactory.times(1)).findByNameContainsIgnoreCase(name);
+        Mockito.reset(userRepository);
+    }
+
+    private void verifyFindByIdIsCalledOnce() {
+        Mockito.verify(userRepository, VerificationModeFactory.times(1)).findById(Mockito.anyLong());
+        Mockito.reset(userRepository);
+    }
+
+    private void verifyFindAllEmployeesIsCalledOnce() {
+        Mockito.verify(userRepository, VerificationModeFactory.times(1)).findAll();
+        Mockito.reset(userRepository);
     }
 }
