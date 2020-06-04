@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,22 +20,27 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public Optional<User> getUserById(Long id) {
+        return userRepository.getUserById(id);
+    }
+
+    @Override
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
     public void deleteAll() {
-
+        userRepository.deleteAll();
     }
 
     @Override
     public void deleteUserByName(String name) {
-
+        userRepository.deleteByName(name);
     }
 }
