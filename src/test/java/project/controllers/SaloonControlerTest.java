@@ -164,26 +164,7 @@ public class SaloonControlerTest {
         List<Saloon> allSaloons = singletonList(saloon);
 
 
-        saloon.setOwner(user);
-        assertEquals(user,saloon.getOwner());
-        saloon.setServices(saloon.getServices());
-        assertEquals(saloon.getServices(),saloon.getServices());
-        saloon.setId(saloon.getId());
-        assertEquals(saloon.getId(),saloon.getId());
-        saloon.setSchedule(saloon.getSchedule());
-        assertEquals(saloon.getSchedule(),saloon.getSchedule());
-        saloon.setCity(saloon.getCity());
-        assertEquals(saloon.getCity(),saloon.getCity());
-        saloon.setPostalCode(saloon.getPostalCode());
-        assertEquals(saloon.getPostalCode(),saloon.getPostalCode());
-        saloon.setType(saloon.getType());
-        assertEquals(saloon.getType(),saloon.getType());
-        saloon.setContact(saloon.getContact());
-        assertEquals(saloon.getContact(),saloon.getContact());
-        saloon.setName(saloon.getName());
-        assertEquals(saloon.getName(),saloon.getName());
-        saloon.setStatus(saloon.getStatus());
-        assertEquals(saloon.getStatus(),saloon.getStatus());
+
 
 
 

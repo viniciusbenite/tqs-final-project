@@ -120,16 +120,6 @@ public class ReservationsControllerTest {
         reservation.setDate("12/04/2020");
 
 
-        reservation.setUsers(user);
-        assertEquals(user,reservation.getUsers());
-        reservation.setService(service);
-        assertEquals(service,reservation.getService());
-        reservation.setId(reservation.getId());
-        assertEquals(reservation.getId(),reservation.getId());
-        reservation.setTime(reservation.getTime());
-        assertEquals(reservation.getTime(),reservation.getTime());
-        reservation.setDate(reservation.getDate());
-        assertEquals(reservation.getDate(),reservation.getDate());
 
 
 
