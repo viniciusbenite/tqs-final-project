@@ -24,3 +24,5 @@ The final product of this project cosists in a web application to help users to 
 
 
 
+Deploy do frontend no Heroku: https://reacttqs.herokuapp.com/
+
