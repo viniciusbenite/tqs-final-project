@@ -34,3 +34,7 @@ The final product of this project cosists in a web project to help users to find
 
 ### CI / CD
 Continuous integration and deploy are made with help of [Travis CI](https://travis-ci.org/github/viniciusbenite/tqs-final-project), [SonarCloud](https://sonarcloud.io/dashboard?branch=features&id=org.ua%3Atqs_final_project) and [Heroku](https://tqs-final-project-barbershop.herokuapp.com/greeting).
+
+
+
+DEPLOY DO FRONTEND: https://reacttqs.herokuapp.com/
