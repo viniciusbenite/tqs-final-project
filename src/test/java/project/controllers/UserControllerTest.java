@@ -1,150 +1,105 @@
 package project.controllers;
-
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.ui.Model;
 import project.saloon.Saloon;
 import project.schedule.Schedule;
-import project.service.Service;
+import project.user.*;
 import project.user.User;
 import project.user.UserController;
-
+import project.user.UserRepository;
+import project.service.Service;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static project.constants.Paths.USER;
-import static project.controllers.ReservationControllerTest.asJsonString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+
+@ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
-    User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
-    Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
-            "Portugal", "open", "barbeiro", "12345",
-            "blabla", "someimage", "endereço", user);
+    @Mock( lenient = true)
+    UserRepository R;
 
-    Service service = new Service();
-    Schedule schedule = new Schedule();
+    @Mock( lenient = true)
+    UserService S;
 
-    List<User> allUsers = singletonList(user);
+    @Mock( lenient = true)
+    private Model model;
 
-    @Autowired
-    private MockMvc mockMvc;
 
-    @MockBean
-    private UserController userController;
-
-    @Before
-    public void setup() {
-
-        service.setId(1L);
-        service.setPrice(9.99);
-        service.setAvailable("yes");
-        service.setDescription("Corte cabelo");
-
-        schedule.setId(1L);
-        schedule.setSallon(saloon);
-        schedule.setService(service);
-
-        user.setId(1111L);
-    }
+    @InjectMocks
+    UserController controller;
 
 
     @Test
     public void getAllUsers() throws Exception {
-        /*
-            Check GET all method
-        */
-        given(userController.all()).willReturn(allUsers);
 
-        mockMvc.perform(get(USER)
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int) (long) user.getId())));
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+
+
+        List<User> allUsers = singletonList(user);
+
+
+
+        Mockito.when(S.getAllUser()).thenReturn(allUsers);
+
+
+        assertEquals(controller.all(),allUsers);
+
+    }
+
+
+    @Test
+    public void newUser() throws Exception {
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+
+
+
+
+        Mockito.when(R.save(user)).thenReturn(user);
+
+
+        assertEquals(controller.newUser(user),user);
+
+    }
+
+
+    @Test
+    public void getUser() throws Exception {
+
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+
+
+        Mockito.when(R.getUserById(user.getId())).thenReturn(java.util.Optional.of(user));
+
+
+        assertEquals(controller.getUser(user.getId()),user);
+
     }
 
     @Test
-    public void getSingleUser() throws Exception {
-        /*
-            Check GET {ID} method
-        */
-        given(userController.getUser(user.getId())).willReturn(user);
+    public void editUser() throws Exception {
 
-        mockMvc.perform(get(USER + "/" + user.getId())
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is((int) (long) user.getId())));
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+
+
+
+
+
+        Mockito.when(R.getUserById(user.getId())).thenReturn(java.util.Optional.of(user));
+        Mockito.when(R.save(user)).thenReturn(user);
+
+
+        assertEquals(controller.editUser(user,user.getId()),user);
+
     }
 
-    @Test
-    public void createNewService() throws Exception {
-        /*
-            Create new service test (POST)
-        */
-        given(userController.getUser(user.getId())).willReturn(user);
 
-        mockMvc.perform(post(USER + "/")
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
-                .andExpect(status().isOk());
-    }
 
-    @Test
-    public void deleteUserTest() throws Exception {
-        /*
-            Delete a single user test
-        */
-        given(userController.getUser(user.getId())).willReturn(user);
 
-        mockMvc.perform(delete(USER + "/" + user.getId())
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void deleteAllUsersTest() throws Exception {
-        /*
-            Delete all user test
-        */
-        given(userController.getUser(user.getId())).willReturn(user);
-
-        mockMvc.perform(delete(USER + "/")
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(user)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void shouldReturn400WhenStringAsArgumentTest() throws Exception {
-        /*
-            the call must accepts only longs/int as argument
-        */
-
-        mockMvc.perform(get(USER + "/hello")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
-    }
 }

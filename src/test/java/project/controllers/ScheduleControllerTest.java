@@ -1,147 +1,137 @@
 package project.controllers;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.ui.Model;
 import project.saloon.Saloon;
+import project.schedule.*;
 import project.schedule.Schedule;
 import project.schedule.ScheduleController;
+import project.schedule.ScheduleRepository;
+import project.schedule.Schedule;
 import project.service.Service;
 import project.user.User;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static project.constants.Paths.SCHEDULE;
-import static project.controllers.ReservationControllerTest.asJsonString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(ScheduleController.class)
+@ExtendWith(MockitoExtension.class)
 public class ScheduleControllerTest {
 
-    User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
-    Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
-            "Portugal", "open", "barbeiro", "12345",
-            "blabla", "someimage", "endereço", user);
 
-    Service service = new Service();
-    Schedule schedule = new Schedule();
+    @Mock( lenient = true)
+    ScheduleRepository R;
 
-    List<Schedule> allSchedule = singletonList(schedule);
+    @Mock( lenient = true)
+    ScheduleService S;
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Mock( lenient = true)
+    private Model model;
 
-    @MockBean
-    private ScheduleController scheduleController;
 
-    @Before
-    public void setup() {
+    @InjectMocks
+    ScheduleController controller;
 
-        service.setId(1L);
-        service.setPrice(9.99);
-        service.setAvailable("yes");
-        service.setDescription("Corte cabelo");
 
-        schedule.setId(1L);
-        schedule.setSallon(saloon);
-        schedule.setService(service);
+    @Test
+    public void getAllSchedules() throws Exception {
+
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", user);
+
+        Service service = new Service();
+        Schedule schedule = new Schedule();
+
+        List<Schedule> allSchedules = singletonList(schedule);
+
+
+
+        Mockito.when(S.getAllSchedule()).thenReturn(allSchedules);
+
+
+        assertEquals(controller.all(),allSchedules);
+
+    }
+
+
+    @Test
+    public void newSchedule() throws Exception {
+
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", user);
+
+        Service service = new Service();
+        Schedule schedule = new Schedule();
+
+        List<Schedule> allSchedule = singletonList(schedule);
+
+
+        Mockito.when(R.save(schedule)).thenReturn(schedule);
+
+
+        assertEquals(controller.newSchedule(schedule),schedule);
+
+    }
+
+
+    @Test
+    public void getSchedule() throws Exception {
+
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", user);
+
+        Service service = new Service();
+        Schedule schedule = new Schedule();
+
+        List<Schedule> allSchedule = singletonList(schedule);
+
+
+        Mockito.when(R.getScheduleById(schedule.getId())).thenReturn(java.util.Optional.of(schedule));
+
+
+        assertEquals(controller.getSchedule(schedule.getId()),schedule);
 
     }
 
     @Test
-    public void getAllSchedule() throws Exception {
-        /*
-            Check GET all method
-        */
-        given(scheduleController.all()).willReturn(allSchedule);
+    public void editSchedule() throws Exception {
 
-        mockMvc.perform(get(SCHEDULE)
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int) (long) schedule.getId())));
+        User user = new User("Fulano de Tal", "fulanodetal@gmail.com", "somepass");
+        Saloon saloon = new Saloon("Saloon name", "7890", "Aveiro",
+                "Portugal", "open", "barbeiro", "12345",
+                "blabla", "someimage", "endereço", user);
+
+        Service service = new Service();
+        Schedule schedule = new Schedule();
+
+        List<Schedule> allSchedule = singletonList(schedule);
+
+
+
+
+
+        Mockito.when(R.getScheduleById(schedule.getId())).thenReturn(java.util.Optional.of(schedule));
+        Mockito.when(R.save(schedule)).thenReturn(schedule);
+
+
+        assertEquals(controller.editSchedule(schedule,schedule.getId()),schedule);
+
     }
-
-    @Test
-    public void getSingleSchedule() throws Exception {
-        /*
-            Check GET {ID} method
-        */
-        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
-
-        mockMvc.perform(get(SCHEDULE + "/" + schedule.getId())
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is((int) (long) schedule.getId())));
-    }
-
-    @Test
-    public void createNewSchedule() throws Exception {
-        /*
-            Create new schedule test (POST)
-        */
-        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
-
-        mockMvc.perform(post(SCHEDULE + "/")
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(schedule)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void deleteScheduleTest() throws Exception {
-        /*
-            Delete a single schedule test
-        */
-        given(scheduleController.getSchedule(schedule.getId())).willReturn(schedule);
-
-        mockMvc.perform(delete(SCHEDULE + "/" + schedule.getId())
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(schedule)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void deleteAllScheduleTest() throws Exception {
-        /*
-            Delete all schedule test
-        */
-        given(scheduleController.all()).willReturn(allSchedule);
-
-        mockMvc.perform(delete(SCHEDULE + "/")
-                .with(user("Fulano de Tal").password("somepass"))
-                .contentType(APPLICATION_JSON)
-                .content(asJsonString(schedule)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void shouldReturn400WhenStringAsArgumentTest() throws Exception {
-        /*
-            the call must accepts only longs/int as argument
-        */
-
-        mockMvc.perform(get(SCHEDULE + "/hello")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
-    }
+    
+    
 }

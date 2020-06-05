@@ -18,18 +18,21 @@ public class ServiceController {
     private ServiceRepository serviceRepository;
 
     @ApiOperation("Get all services")
+    @CrossOrigin(origins="*")
     @GetMapping
     public List<Service> all() {
         return serviceService.getAllService();
     }
 
     @ApiOperation("Create a new service")
+    @CrossOrigin(origins="*")
     @PostMapping("/")
     public Service newService(@RequestBody Service newService) {
         return serviceRepository.save(newService);
     }
 
     @ApiOperation("Get a single service")
+    @CrossOrigin(origins="*")
     @GetMapping("/{id}")
     public Service getService(@PathVariable Long id) {
         return serviceRepository.getServiceById(id)
@@ -37,6 +40,7 @@ public class ServiceController {
     }
 
     @ApiOperation("Edit a service")
+    @CrossOrigin(origins="*")
     @PutMapping("/{id}")
     public Service editService(@RequestBody Service newService,
                                @PathVariable Long id) {
@@ -59,12 +63,14 @@ public class ServiceController {
     }
 
     @ApiOperation("Delete a service")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/{id}")
     public void deleteService(@PathVariable Long id) {
         serviceRepository.deleteById(id);
     }
 
     @ApiOperation("Delete all service")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/")
     public void purgeService() {
         serviceRepository.deleteAll();

@@ -18,18 +18,21 @@ public class ScheduleController {
     private ScheduleRepository scheduleRepository;
 
     @ApiOperation("Get all schedule")
+    @CrossOrigin(origins="*")
     @GetMapping
     public List<Schedule> all() {
         return scheduleService.getAllSchedule();
     }
 
     @ApiOperation("Create a new schedule")
+    @CrossOrigin(origins="*")
     @PostMapping("/")
     public Schedule newSchedule(@RequestBody Schedule newSchedule) {
         return scheduleRepository.save(newSchedule);
     }
 
     @ApiOperation("Get a single schedule")
+    @CrossOrigin(origins="*")
     @GetMapping("/{id}")
     public Schedule getSchedule(@PathVariable Long id) {
         return scheduleRepository.getScheduleById(id)
@@ -37,6 +40,7 @@ public class ScheduleController {
     }
 
     @ApiOperation("Edit a schedule")
+    @CrossOrigin(origins="*")
     @PutMapping("/{id}")
     public Schedule editSchedule(@RequestBody Schedule newSchedule,
                                  @PathVariable Long id) {
@@ -58,12 +62,14 @@ public class ScheduleController {
     }
 
     @ApiOperation("Delete a schedule")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/{id}")
     public void deleteSchedule(@PathVariable Long id) {
         scheduleRepository.deleteById(id);
     }
 
     @ApiOperation("Delete all schedule")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/")
     public void purgeSchedule() {
         scheduleRepository.deleteAll();

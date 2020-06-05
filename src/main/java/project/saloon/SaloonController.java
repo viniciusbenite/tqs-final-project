@@ -37,6 +37,7 @@ public class SaloonController {
     private ReservationRepository reservationRepository;
 
     @ApiOperation("Get all saloons")
+    @CrossOrigin(origins="*")
     @GetMapping
     public List<Saloon> all() {
 
@@ -45,6 +46,7 @@ public class SaloonController {
     }
 
     @ApiOperation("Create a new saloon")
+    @CrossOrigin(origins="*")
     @PostMapping("/")
     public Saloon newSaloon(@RequestBody Saloon newSaloon) {
        
@@ -52,6 +54,7 @@ public class SaloonController {
     }
 
     @ApiOperation("Get a single saloon")
+    @CrossOrigin(origins="*")
     @GetMapping("/{id}")
     public Saloon getSaloon(@PathVariable Long id) {
         return saloonRepository.getSaloonById(id)
@@ -59,6 +62,7 @@ public class SaloonController {
     }
 
     @ApiOperation("Edit a saloon")
+    @CrossOrigin(origins="*")
     @PutMapping("/{id}")
     public Saloon editSaloon(@RequestBody Saloon newSaloon,
                              @PathVariable Long id) {
@@ -84,19 +88,25 @@ public class SaloonController {
     }
 
     @ApiOperation("Delete a saloon")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/{id}")
     public void deleteSaloon(@PathVariable Long id) {
         saloonRepository.deleteById(id);
     }
 
     @ApiOperation("Delete all saloons")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/")
     public void purgeSaloon() {
         saloonRepository.deleteAll();
     }
 
+/*
+
+TIRAR COMENTÁRIOS PARA A MOBILE APP FUNCIONAR
 
     @ApiOperation("Save info for tests")
+    @CrossOrigin(origins="*")
     @GetMapping("/save")
     public String save() {
        
@@ -177,4 +187,6 @@ public class SaloonController {
 
         return "saved";
     }
+
+ */
 }

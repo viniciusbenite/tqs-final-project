@@ -13,7 +13,7 @@ export const logout = () => {
 
 // GET USERS DA API DO SPRING
 export default function getUsers()  {
-  return fetch('http://localhost:3000/user')
+  return fetch('https://tqs-final-project-barbershop.herokuapp.com/user')
         .then((response) => { 
             return response.json().then((data) => {
                

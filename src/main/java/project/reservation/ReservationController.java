@@ -21,18 +21,21 @@ public class ReservationController {
     private ReservationRepository reservationRepository;
 
     @ApiOperation("Get all reservations")
+    @CrossOrigin(origins="*")
     @GetMapping()
     public List<Reservation> all() {
         return reservationRepository.findAll();
     }
 
     @ApiOperation("Create a new reservation")
+    @CrossOrigin(origins="*")
     @PostMapping("/")
     public Reservation newReservation(@RequestBody Reservation newReservation) {
         return reservationRepository.save(newReservation);
     }
 
     @ApiOperation("Get a single reservation")
+    @CrossOrigin(origins="*")
     @GetMapping("/{id}")
     public Reservation getReservation(@PathVariable Long id) {
         return reservationRepository.getReservationById(id)
@@ -40,6 +43,7 @@ public class ReservationController {
     }
 
     @ApiOperation("Edit a reservation")
+    @CrossOrigin(origins="*")
     @PutMapping("/{id}")
     public Reservation editReservation(@RequestBody Reservation newReservation,
                                        @PathVariable Long id) {
@@ -59,12 +63,14 @@ public class ReservationController {
     }
 
     @ApiOperation("Delete a reservation")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/{id}")
     public void deleteReservation(@PathVariable Long id) {
         reservationRepository.deleteById(id);
     }
 
     @ApiOperation("Delete all operations")
+    @CrossOrigin(origins="*")
     @DeleteMapping("/")
     public void purgeReservations() {
         reservationRepository.deleteAll();

@@ -3,7 +3,7 @@ import axios from "axios";
 // PARA POST:
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://tqs-final-project-barbershop.herokuapp.com'
 });
 
 
