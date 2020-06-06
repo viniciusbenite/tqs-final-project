@@ -38,4 +38,4 @@ Continuous integration and deploy are made with help of [Travis CI](https://trav
 
 
 
-DEPLOY DO FRONTEND: https://reacttqs.herokuapp.com/
+DEPLOY DO FRONTEND:: https://reacttqs.herokuapp.com/
