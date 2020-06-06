@@ -12,6 +12,9 @@ import static org.junit.Assert.assertThat;
 public class CriarClienteTest {
     private WebDriver driver;
     JavascriptExecutor js;
+
+    /* SÓ CONEXÕES LOCAIS
+
     @Before
     public void setUp() {
         driver = new ChromeDriver();
@@ -23,7 +26,7 @@ public class CriarClienteTest {
     }
     @Test
     public void criarcliente() {
-        driver.get("https://reacttqs.herokuapp.com/");
+        driver.get("http://localhost:3000/");
         driver.manage().window().setSize(new Dimension(1853, 895));
         driver.findElement(By.linkText("Criar conta como Cliente")).click();
         driver.findElement(By.cssSelector("input:nth-child(1)")).click();
@@ -65,4 +68,7 @@ public class CriarClienteTest {
         assertThat(driver.findElement(By.cssSelector("h1")).getText(), is("Bem-vindo"));
         assertThat(driver.findElement(By.linkText("As minhas reservas")).getText(), is("As minhas reservas"));
     }
+
+
+     */
 }

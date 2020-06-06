@@ -6,14 +6,14 @@
     "runtime-main.js": "/static/js/runtime-main.62b0a0ad.js",
     "runtime-main.js.map": "/static/js/runtime-main.62b0a0ad.js.map",
     "static/css/2.ecffae5e.chunk.css": "/static/css/2.ecffae5e.chunk.css",
-    "static/js/2.24af4acc.chunk.js": "/static/js/2.24af4acc.chunk.js",
-    "static/js/2.24af4acc.chunk.js.map": "/static/js/2.24af4acc.chunk.js.map",
+    "static/js/2.06afe914.chunk.js": "/static/js/2.06afe914.chunk.js",
+    "static/js/2.06afe914.chunk.js.map": "/static/js/2.06afe914.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.15cd6e901ce582fd8fa367f67ddfc6af.js": "/precache-manifest.15cd6e901ce582fd8fa367f67ddfc6af.js",
+    "precache-manifest.7c02fc4730aa93b3ba90cf39c89395ca.js": "/precache-manifest.7c02fc4730aa93b3ba90cf39c89395ca.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.ecffae5e.chunk.css.map": "/static/css/2.ecffae5e.chunk.css.map",
     "static/css/main.fcc6280a.chunk.css.map": "/static/css/main.fcc6280a.chunk.css.map",
-    "static/js/2.24af4acc.chunk.js.LICENSE.txt": "/static/js/2.24af4acc.chunk.js.LICENSE.txt",
+    "static/js/2.06afe914.chunk.js.LICENSE.txt": "/static/js/2.06afe914.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/login.6da47502.png",
     "static/media/cabeleireiro1.jpg": "/static/media/cabeleireiro1.be47fa91.jpg",
     "static/media/cabeleireiro2.jpg": "/static/media/cabeleireiro2.00fff85c.jpg",
@@ -24,7 +24,7 @@
   "entrypoints": [
     "static/js/runtime-main.62b0a0ad.js",
     "static/css/2.ecffae5e.chunk.css",
-    "static/js/2.24af4acc.chunk.js",
+    "static/js/2.06afe914.chunk.js",
     "static/css/main.fcc6280a.chunk.css",
     "static/js/main.617ab6b0.chunk.js"
   ]

@@ -22,13 +22,17 @@ public class DonoGestaoTest {
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
+
+  /* SÓ CONEXÕES LOCAIS
+
+
   @After
   public void tearDown() {
     driver.quit();
   }
   @Test
   public void donogestao() {
-    driver.get("https://reacttqs.herokuapp.com/");
+    driver.get("http://localhost:3000/");
     driver.manage().window().setSize(new Dimension(1853, 895));
     driver.findElement(By.cssSelector("input:nth-child(3)")).click();
     driver.findElement(By.cssSelector("input:nth-child(3)")).sendKeys("dono@gmail.com");
@@ -134,5 +138,8 @@ public class DonoGestaoTest {
     driver.findElement(By.cssSelector(".btn-primary:nth-child(4)")).click();
     assertThat(driver.findElement(By.cssSelector(".cabeleireiro-info")).getText(), is("Salao_teste_edit"));
   }
+
+
+   */
 }
 

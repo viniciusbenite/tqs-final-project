@@ -21,7 +21,7 @@ public class ClienteMarcarTest {
   @Test
   public void clienteMarcar() {
     /*
-    driver.get("https://reacttqs.herokuapp.com/");
+    driver.get("http://localhost:3000/");
     driver.manage().window().setSize(new Dimension(911, 893));
     driver.findElement(By.cssSelector("input:nth-child(3)")).click();
     driver.findElement(By.cssSelector("input:nth-child(3)")).sendKeys("cliente@gmail.com");
