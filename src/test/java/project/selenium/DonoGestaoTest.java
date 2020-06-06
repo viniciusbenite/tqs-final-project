@@ -17,13 +17,14 @@ import org.openqa.selenium.interactions.Actions;
 public class DonoGestaoTest {
   private WebDriver driver;
   JavascriptExecutor js;
+   /* SÓ CONEXÕES LOCAIS
   @Before
   public void setUp() {
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
 
-  /* SÓ CONEXÕES LOCAIS
+
 
 
   @After

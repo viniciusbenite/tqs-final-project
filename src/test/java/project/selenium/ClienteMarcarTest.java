@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class ClienteMarcarTest {
   private WebDriver driver;
   JavascriptExecutor js;
+      /*
   @Before
   public void setUp() {
     driver = new ChromeDriver();
@@ -20,7 +21,7 @@ public class ClienteMarcarTest {
   }
   @Test
   public void clienteMarcar() {
-    /*
+
     driver.get("http://localhost:3000/");
     driver.manage().window().setSize(new Dimension(911, 893));
     driver.findElement(By.cssSelector("input:nth-child(3)")).click();
@@ -73,6 +74,8 @@ public class ClienteMarcarTest {
     }
     driver.findElement(By.cssSelector(".reservar > input")).click();
     driver.close();
-     */
+
   }
+
+       */
 }
